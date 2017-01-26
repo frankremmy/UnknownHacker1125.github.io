@@ -1,0 +1,138 @@
+// Sprites by David E. Gervais http://pousse.rapiere.free.fr/tome/
+//////////////////
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P)
+
+// variables
+/////////////////
+$tileSize: 30px
+$background: black
+$textColor: #DDD
+
+%tile
+  width: $tileSize
+  height: $tileSize
+  box-sizing: border-box
+
+$urls: (enemy: url(data:image/gif;base64,R0lGODlhHgAhALMKAP8A/xAQEGWZMJnOZZllMDBlAO7u7s6ZZc7Ozv8AMAAAAAAAAAAAAAAAAAAAAAAAACH+HUJ1aWx0IHdpdGggR0lGIE1vdmllIEdlYXIgMi42ACH5BAEKAAAALAAAAAAeACEABwTYEMhJq71YhpA171QwfJdIgoAocFubCiM6qUUg3HdQwCdKbysdTxYaCGoJQUIYI84GRpsO2nMCb4Va1XozBAzZrUwaQJQ3NWco2EKLQVKvXPcutXFYrQsO7aPDNnh1IlA3fht9MDhvKiuGhX1RRisZKkCTijhaURiNl5CFR4icFpYvMJGaLKQVQCyBeEdaLxslha9tuSm3tjkpBMDBwau+dqsBBMjAyFIptT5RysmmVpy61GOsRZREKsmtBNodAQcHy+AE5WK5wrlt7XvO7vP0uiH19+5q+wARACH+5VRoaXMgZmlsZSB3YXMgY3JlYXRlZCBieSAgICANDUdyYXBoaWMgV29ya3Nob3AgZm9yIFdpbmRvd3MgMS4xeQ0NZnJvbSBBbGNoZW15IE1pbmR3b3JrcyBJbmMuDVAuTy4gQm94IDUwMA1CZWV0b24sIE9udGFyaW8NTDBHIDFBMCBDQU5BREENDVRoaXMgaW1hZ2UgbWF5IGhhdmUgYmVlbiBjcmVhdGVkIGJ5DWEgcGFydHkgb3RoZXIgdGhhbiBBbGNoZW15IE1pbmR3b3JrcyBJbmMuDQ1Vc2Ugbm8gaG9va3MAOw==), boss: url(data:image/gif;base64,R0lGODlhJQArAMQWAP8wmRAQEGUAZd7e3pkwmSAgILq6upllAP/OAJmZmQBl/wAA3s6ZAGUwAGXO/5llMP//AKqqqpkwAM4AAImJif8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH+HUJ1aWx0IHdpdGggR0lGIE1vdmllIEdlYXIgMi42ACH5BAEKAAAALAAAAAAlACsABwX+ICCOZGmeaKoCwequQQM17WuLMdLoen3DDwQCInz4fqnAgzFEMIxIV2AwMEQSR1JgG2UFCoYC1xSQTCTZV8CwDmBPgUllkvalcdXIfYtGHwMKLQELewWGewgBEAGJWguBgHt5dyxCjSNbgw4OCoRkk0kMf48KDoacnjgBBJmse6IlmQ4DAQ5jLAYDFAK8FFV1ULGPU2KYVJm0W8exB1mDgWK0eFu5tFRsbMx1NcrUX8lTyAXSmM1SVQVe1VO/3pkBB+QqYwECyJn2AGDX8APpNvXWHOOX7x08Sijq2eu2hZczcwB52cs1hY3EPxDVCCCwMFxDjhgRktnY5h0bkFqxMsJwmICKSypYHJYTqYVkS3AwV+XDoTLJKpADYrqhtdEVT5o4itqLybIeAZQsesKR6JBoVae8WEVFqvOiVXtEOZLcCuMp1XBesWbdIjXWxrfsFIINC/fgPLFvWTFdqpCjX7sJGVD9+xXt24ttWUA47IrhvVZrEwdgwKCxMTvyWgGGcwsHRWPZtBRITEYZLUOo44p51wwh6kPWvoiB7dFgZxOvZ38xqNvgD9vOfHcZbiIEACH+5VRoaXMgZmlsZSB3YXMgY3JlYXRlZCBieSAgICANDUdyYXBoaWMgV29ya3Nob3AgZm9yIFdpbmRvd3MgMS4xeQ0NZnJvbSBBbGNoZW15IE1pbmR3b3JrcyBJbmMuDVAuTy4gQm94IDUwMA1CZWV0b24sIE9udGFyaW8NTDBHIDFBMCBDQU5BREENDVRoaXMgaW1hZ2UgbWF5IGhhdmUgYmVlbiBjcmVhdGVkIGJ5DWEgcGFydHkgb3RoZXIgdGhhbiBBbGNoZW15IE1pbmR3b3JrcyBJbmMuDQ1Vc2Ugbm8gaG9va3MAOw==), potion: url(data:image/gif;base64,R0lGODlhEwAYALMPAP8A/yAgIBAQEJkAAKqqqnUAAP8AAGVlZURERKVIGM4AAN7e3u7u7omJiWUwAAAAACH+HUJ1aWx0IHdpdGggR0lGIE1vdmllIEdlYXIgMi42ACH5BAEKAAAALAAAAAATABgABwR1EMhJq6Uii3tFakmycdgXjiQgEAtBNAdKCs3iOPLMInE6rQtejgMU+lQ7hFHHUDidvQ6BYahaDVEMi3qtDrISIGOgGJjNBTByMD6TB+ncyl0u2OOW1X1faAQCUgQIggcwf4Adh4qHKYuLPo6KRxOSkxJ/lhcRACH+5VRoaXMgZmlsZSB3YXMgY3JlYXRlZCBieSAgICANDUdyYXBoaWMgV29ya3Nob3AgZm9yIFdpbmRvd3MgMS4xeQ0NZnJvbSBBbGNoZW15IE1pbmR3b3JrcyBJbmMuDVAuTy4gQm94IDUwMA1CZWV0b24sIE9udGFyaW8NTDBHIDFBMCBDQU5BREENDVRoaXMgaW1hZ2UgbWF5IGhhdmUgYmVlbiBjcmVhdGVkIGJ5DWEgcGFydHkgb3RoZXIgdGhhbiBBbGNoZW15IE1pbmR3b3JrcyBJbmMuDQ1Vc2Ugbm8gaG9va3MAOw==), player: url(data:image/gif;base64,R0lGODlhGQAiALMLAP8A/xAQEO4AALoAAHUAACAgIJllAP/Omc6ZZWUwAJllMAAAAAAAAAAAAAAAAAAAACH+HUJ1aWx0IHdpdGggR0lGIE1vdmllIEdlYXIgMi42ACH5BAEKAAAALAAAAAAZACIABwTREMhJq7046ID7DMIwEJx3gQKhkqaFhmPZSugWz58QGEYSsLjaTnObgXaGQ+8n82h0BoTSN9CYAlUBdEnINivY0DNAzWq/tIF2pNZqSW0gJcwWpVbwFBor6rbvG4AuamobeCFvcnN/IQdSBG4kaB92jY9vk2B8A44HK5kuGniSoGAjfqdVRm6EqD4tP6wqdaUAICshkKmqHShduWt+oC9tI8Eiw6zBx8gZysC5whkrIruniqGGKhsF3Rjd4AgKCuAF4uPl3gDp6TTs4BXsFu049REAIf7lVGhpcyBmaWxlIHdhcyBjcmVhdGVkIGJ5ICAgIA0NR3JhcGhpYyBXb3Jrc2hvcCBmb3IgV2luZG93cyAxLjF5DQ1mcm9tIEFsY2hlbXkgTWluZHdvcmtzIEluYy4NUC5PLiBCb3ggNTAwDUJlZXRvbiwgT250YXJpbw1MMEcgMUEwIENBTkFEQQ0NVGhpcyBpbWFnZSBtYXkgaGF2ZSBiZWVuIGNyZWF0ZWQgYnkNYSBwYXJ0eSBvdGhlciB0aGFuIEFsY2hlbXkgTWluZHdvcmtzIEluYy4NDVVzZSBubyBob29rcwA7), weapon: url(data:image/gif;base64,R0lGODlhIAAgAKIGAM6ZZRAQEGUwAJllMP/Omf8A/wAAAAAAACH+HUJ1aWx0IHdpdGggR0lGIE1vdmllIEdlYXIgMi42ACH5BAEKAAUALAAAAAAgACAABwP+GLrc/qqUAIi9OOsMggwEIALDQJqkiKplGQreZI0Vjd50Di8hKfzAoFAoIuwUM8HINAwSBrOQkdFTmm6tbG+UpIqsS4Bg8CNvuZUj6KlUpU4u96nqFY/fS4F0ZX7Vx20pKFt7P108PkA4fEVkY3SIdiV3KzmOhj5/ZWVvJSpBUH6Il2NkV3hlLZBIX4pQgSefqkyaQE9ijK2GoqyOcZ82WFBfXr63sXc5dqsgiSFXV6ksKs9qVU/P0ZOVg8SjVs+JgKVhzNXQ4pvJaGTFbdq+oCuHve+kWZPr5ikb/Rko1li0iOXJU42DtEYVFJTLRBQL7RaQakKRIoSLGCFImJAJsWODjR5DKkgAACH+5VRoaXMgZmlsZSB3YXMgY3JlYXRlZCBieSAgICANDUdyYXBoaWMgV29ya3Nob3AgZm9yIFdpbmRvd3MgMS4xeQ0NZnJvbSBBbGNoZW15IE1pbmR3b3JrcyBJbmMuDVAuTy4gQm94IDUwMA1CZWV0b24sIE9udGFyaW8NTDBHIDFBMCBDQU5BREENDVRoaXMgaW1hZ2UgbWF5IGhhdmUgYmVlbiBjcmVhdGVkIGJ5DWEgcGFydHkgb3RoZXIgdGhhbiBBbGNoZW15IE1pbmR3b3JrcyBJbmMuDQ1Vc2Ugbm8gaG9va3MAOw==))
+
+// mixins
+/////////////////
+@mixin make-floor-bg($type)
+  repeat: no-repeat
+  size: contain
+  image: if($type == floor, null, map-get($urls, $type) + ',') url(data:image/gif;base64,R0lGODlhIAAgAKIFAJmZmTAwMLq6unV1daqqqgAAAAAAAAAAACH+HUJ1aWx0IHdpdGggR0lGIE1vdmllIEdlYXIgMi42ACH5BAAKAAAALAAAAAAgACAABwP+CBoKwqvFEMRrA44N1/AYZQFZU5HU2Twby42LoGQvK2XU8IjBxm2AiuhjQ1l2FRlS2GNYKAqXyjGljoQyky/VCWZN2ZKLhDz2SLiP9hXNiZ7ad0/NvUR3ks67zcgcg2pGMzRaEixQK2d+aDx0ZzNvPgMEh1l7Ui5+Szk6nDpfVFBLdw9Pcik+kCN+VSqlbaZzUyePEYkmpCKDEHYoIXMlgXY4X4qzsU1bsk+OaZCwpSmmWS5PzF64Dg5216EcbTQfVW2JW0gfnaie5r+6ZsRmTHV9OEkSQfaMSqUWBE1JtVS1k9QBHqRA9VQhC5MPhSeAbIxYUIYwSZkFujD2kTYi5hjDa6w0yahXYo04ak2UtDJT7FzBV7ayBcmz7RWHVgoSAAAh/uVUaGlzIGZpbGUgd2FzIGNyZWF0ZWQgYnkgICAgDQ1HcmFwaGljIFdvcmtzaG9wIGZvciBXaW5kb3dzIDEuMXkNDWZyb20gQWxjaGVteSBNaW5kd29ya3MgSW5jLg1QLk8uIEJveCA1MDANQmVldG9uLCBPbnRhcmlvDUwwRyAxQTAgQ0FOQURBDQ1UaGlzIGltYWdlIG1heSBoYXZlIGJlZW4gY3JlYXRlZCBieQ1hIHBhcnR5IG90aGVyIHRoYW4gQWxjaGVteSBNaW5kd29ya3MgSW5jLg0NVXNlIG5vIGhvb2tzADs=)
+  
+
+body
+  background-color: $background
+  color: $textColor
+  font:
+    family: 'Press Start 2P'
+    size: 12px
+
+.game
+  position: relative
+  margin: 0 auto
+  max-width: 80%
+  text-align: center
+
+.map
+  position: relative
+  display: flex
+  flex-flow: row wrap
+  width: $tileSize * 30
+
+.wall
+  @extend %tile
+  background:
+    color: darkgrey
+    size: contain
+    image: url(data:image/gif;base64,R0lGODlhIAAgAKIEAERERBAQEGVlZXV1dQAAAAAAAAAAAAAAACH+HUJ1aWx0IHdpdGggR0lGIE1vdmllIEdlYXIgMi42ACH5BAAKAAAALAAAAAAgACAABwP+GDHcugMICcZ8sA7MpgWB4InUBGYRBXlqU1YU2ImTEEYdIEciDl8zEohFsvloNN1OeFHWdIGY7qmMCqtRJfalPSm6Xox4TC5DLA2LTSGYPdLodQ9JXfxEi7bkaVTrTUBEOzE8Mno+KUMVf3Y4hUZXVIYmUDV8lS+UmHVTezFsUhJiXQ+dWmaoqWJta2doFm9wllBnokWHth9HSENJeYIRKDBTT7WQPyV2lJJQFMEfmb3IgCqcYCZZl5o2p1/cn19cWbSq5WZtcGoPNGk967BRiHyghUdDPjdEj8KONSvBoZbJiFYM2sBHmqw4E8cCRDQp46RQUkiLC5ZwzLxcNMcDMUACACH+5VRoaXMgZmlsZSB3YXMgY3JlYXRlZCBieSAgICANDUdyYXBoaWMgV29ya3Nob3AgZm9yIFdpbmRvd3MgMS4xeQ0NZnJvbSBBbGNoZW15IE1pbmR3b3JrcyBJbmMuDVAuTy4gQm94IDUwMA1CZWV0b24sIE9udGFyaW8NTDBHIDFBMCBDQU5BREENDVRoaXMgaW1hZ2UgbWF5IGhhdmUgYmVlbiBjcmVhdGVkIGJ5DWEgcGFydHkgb3RoZXIgdGhhbiBBbGNoZW15IE1pbmR3b3JrcyBJbmMuDQ1Vc2Ugbm8gaG9va3MAOw==)
+
+.floor
+  @extend %tile
+  background:
+    color: honeydew
+    @include make-floor-bg(floor)
+
+.player
+  @extend %tile
+  background:
+    color: steelblue
+    @include make-floor-bg(player)
+
+.weapon
+  @extend %tile
+  background:
+    color: yellow
+    @include make-floor-bg(weapon)
+
+.enemy
+  @extend %tile
+  background:
+    color: tomato
+    @include make-floor-bg(enemy)
+
+.boss
+  @extend %tile
+  background:
+    color: red
+    @include make-floor-bg(boss)
+
+.potion
+  @extend %tile
+  background:
+    color: green
+    @include make-floor-bg(potion)
+
+.door
+  @extend %tile
+  background:
+    color: purple
+    size: contain
+    image: url(data:image/gif;base64,R0lGODlhIAAgALMAAAAAABAQEM7Ozqqqqrq6ut7e3u7u7pmZmSAgIHV1dYmJiTAwMAAAAAAAAAAAAAAAACH+HUJ1aWx0IHdpdGggR0lGIE1vdmllIEdlYXIgMi42ACH5BAAKAAAALAAAAAAgACAABwT+MMhJq710EB3EEJRRGIIggtS2daVwJOEYjMNxfKAhTsnQfRuFpCAYEQiBg+DomhWYnYAwAZsQZ7cDclki5JSHmSfjO800GtDx2FGVPVvcTIUt+C6DQlikQQ4+Ei1jEwCFhoUURmxSQ4FhAYeRkRJagRMnj5CSm4gSJF5DBhphnKUASRscM6IEpKabqH9IF6+wFwUjILWcAXx3JBy7sLmzNk3CkgF/S7TIhxcegAgIzogiMixs09WnuXdAYdvVvcYXCAvct7kB4s5if55wmukkzElg8+PLsxXcnRXRQLRD1guXgUBLkAwUtmoQOHbUxhkoZ+FcOgsGBUZ0RwReL3kM/k7VK4YvpDIgASIAACH+5VRoaXMgZmlsZSB3YXMgY3JlYXRlZCBieSAgICANDUdyYXBoaWMgV29ya3Nob3AgZm9yIFdpbmRvd3MgMS4xeQ0NZnJvbSBBbGNoZW15IE1pbmR3b3JrcyBJbmMuDVAuTy4gQm94IDUwMA1CZWV0b24sIE9udGFyaW8NTDBHIDFBMCBDQU5BREENDVRoaXMgaW1hZ2UgbWF5IGhhdmUgYmVlbiBjcmVhdGVkIGJ5DWEgcGFydHkgb3RoZXIgdGhhbiBBbGNoZW15IE1pbmR3b3JrcyBJbmMuDQ1Vc2Ugbm8gaG9va3MAOw==)
+
+.message--open
+  position: absolute
+  display: block
+  background: $background
+  text-align: center
+  width: 100%
+  height: 100%
+  z-index: 1
+
+.message--closed
+  display: none
+
+.message--title
+  margin-top: calc(50vh - 2em)
+
+button
+  border: none
+  outline: none
+  padding: 0.5em 0.8em
+  color: $background
+  background-color: $textColor
+  position: relative
+
+  &::before,
+  &::after
+    content: ""
+    position: absolute
+    background-color: $textColor
+    height: 80%
+    width: 5px
+    top: 10%
+  
+  &::before
+    margin-left: -14px
+
+  &::after
+    margin-left: 8px
+
+.stats
+  margin-top: 0.3em
+  margin-bottom: 0.3em
+
+.stat
+  padding: 0.8em

@@ -1,0 +1,826 @@
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {List}            - text-shadow list
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke*-1;
+  @for $i from $from through $stroke {
+   @for $j from $from through $stroke {
+      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
+}
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {Style}           - text-shadow
+@mixin stroke($stroke, $color) {
+  text-shadow: stroke($stroke, $color);
+}
+/// Image resource
+/// @param  {String} $name - full name with extension
+/// @return {Url}          - url(...) with full path
+@function image($name) {
+  @return url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/#{$name}');
+}
+@import url(http://fonts.googleapis.com/css?family=VT323);
+$room-size: 320px;
+$character-sprite-size: 128px;
+$character-height: $character-sprite-size/4;
+$character-width: $character-sprite-size/4;
+$room-offset-x: ($room-size - $character-width)/2;
+$room-offset-y: ($room-size - $character-height)/2;
+$wall-width: 8;
+
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: black;
+  user-select: none;
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 170px;
+    width: 170px;
+    background-clip: padding-box;
+    background-image: image('modal_bg.png');
+    border-image: image("modal_bd.png") 8 repeat;
+  }
+}
+
+*, *:before, *:after  {
+  box-sizing: border-box;
+  color: transparent;
+  &:focus {
+    outline: 0;
+  }
+}
+
+.control {
+  position: absolute;
+  z-index: 10;
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  display: inline-flex;
+  font-size: 10px;
+  padding: 0.25em;
+  margin: 0.25em;
+  background: transparent;
+  border: 0 solid red;
+  cursor: image('rpg_point.cur') , pointer;
+  &:focus {
+    color: white;
+    outline: 0;
+    transform: scale(1.2);
+  }
+  &:active {
+    transform: translateY(2px);
+  }
+  &.up {
+    background-image: image('rpg_up.png');
+    top: 10px;
+    left: 55px;
+  }
+  &.down {
+    background-image: image('rpg_down.png');
+    top: 100px;
+    left: 55px;
+  }
+  &.left {
+    background-image: image('rpg_left.png');
+    top: 55px;
+    left: 10px;
+  }
+  &.right {
+    background-image: image('rpg_right.png');
+    top: 55px;
+    left: 100px;
+  }
+}
+input {
+  &[type="checkbox"],
+  &[type="radio"] {
+    //opacity: 0;
+    position: absolute;
+    top: -1em;
+    left: -2em;
+    
+  }
+}
+
+label {
+  cursor: image('rpg_point.cur') , pointer;
+}
+
+.room {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: $room-size;
+  width: $room-size;
+  background-color: transparent;
+  display: none;
+  border: $wall-width + px solid transparent;
+  z-index: 1;
+  box-sizing: content-box;
+  
+  
+  transition-delay: 99999999999999s;
+  transition-property: top, left;
+  transition-duration: 2s;
+  transition-timing-function: linear;
+  
+  &:before {
+    //content: attr(data-room);
+    position: absolute;
+    top: -150px;
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding: 0.5em 1em;
+    font-family: VT323;
+    font-size: 3em;
+    color: black;
+    @include stroke(2, white)
+  }
+}
+
+.bed {
+  display: block;
+  position: absolute;
+  height: 64px;
+  width: 32px;
+  background: image('bed_32-64_01.jpg');
+}
+.carpet {
+  display: block;
+  position: absolute;
+  height: 64px;
+  width: 64px;
+  background: image('carpet_64_01.jpg');
+}
+.stove {
+  display: block;
+  position: absolute;
+  height: 28px;
+  width: 32px;
+  background: image('stove_32-28_01.jpg');
+}
+.sink {
+  display: block;
+  position: absolute;
+  height: 28px;
+  width: 96px;
+  background: image('sink_96-28_01.jpg');
+}
+.table {
+  display: block;
+  position: absolute;
+  height: 64px;
+  width: 32px;
+  background: image('table_32-64_01.jpg');;
+}
+.plant {
+  display: block;
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background: image('rpg_plant_32_1.png');
+}
+.deko1 {
+  display: block;
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background: image('rpg_deko_32_1.png');
+}
+.deko2 {
+  display: block;
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background: image('rpg_deko_32_2.png');
+}
+.basket {
+  display: block;
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background: image('rpg_basket_32_1.png');
+}
+.fireplace {
+  display: block;
+  position: absolute;
+  height: 16px;
+  width: 64px;
+  background: image('rpg_fireplace_64-16_1.png');
+}
+.character {
+  height: $character-height;
+  width: $character-width;
+  margin: $character-height/-2 $character-width/-2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: image('character_32_01.jpg');
+  background-size: $character-sprite-size;
+  background-position: $character-width 0;
+  animation-duration: 0.3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(3);
+  z-index: 2;
+  
+  &:before {
+    position: absolute;
+    bottom: 100%;
+    left: 100%;
+    width: 150px;
+    text-align: center;
+    background: white;
+    border-radius: 3px;
+    border: 2px solid black;
+    padding: 3px;
+    font-family: VT323;
+    color: black;
+    animation: speak-intro 5s linear forwards;
+    
+  }
+  &:after {
+    height: 10px;
+    width: 20px;
+    position: absolute;
+    bottom: 100%;
+    left: 100%;
+    margin: -8px;
+    border-radius: 0 0 50% 50%;
+    animation: speak-intro 5s linear forwards;
+    box-shadow:
+     inset -7px 0 0 white,
+     inset -9px 0 0 black,
+     2px 2px 0 black;
+  }
+
+}
+
+.girl {
+  height: $character-height;
+  width: $character-width;
+  position: absolute;
+  background: image('rpg_girl.png');
+  cursor: image('rpg_speak.png'),pointer;
+  background-size: $character-width $character-height;
+
+  &:before {
+    position: absolute;
+    bottom: 100%;
+    left: 100%;
+    width: 150px;
+    text-align: center;
+    background: white;
+    color: black;
+    border-radius: 3px;
+    border: 2px solid black;
+    padding: 3px;
+    font-family: VT323;
+    animation: speak-intro 5s linear forwards;
+    
+  }
+  &:after {
+    height: 10px;
+    width: 20px;
+    position: absolute;
+    bottom: 100%;
+    left: 100%;
+    margin: -8px;
+    border-radius: 0 0 50% 50%;
+    animation: speak-intro 5s linear forwards;
+    box-shadow:
+     inset -7px 0 0 white,
+     inset -9px 0 0 black,
+     2px 2px 0 black;
+  }
+  
+  &:focus {
+    &:before {
+      content: attr(data-speak);
+      animation-name: speak-girl;
+    }
+    &:after {
+      content: '';
+      animation-name: speak-girl;
+    }
+  }
+
+}
+
+.door {
+  position: absolute;
+  background: blue;
+  background-size: 32px 32px;
+  
+  &.vertical {
+    width: $wall-width + px;
+    height: 64px;
+  }
+  &.horizontal {
+    height: $wall-width + px;
+    width: 64px;
+  }
+}
+
+.bedroom {
+  background: image('floor_32_03.jpg');
+  border-image: image("wall_32_02.png") $wall-width*1.5 stretch;
+  
+  .door {
+    background: image('floor_32_03.jpg');
+    top: $wall-width*-1px;
+    left: 160px;
+  }
+  .bed {
+    top: 0;
+    left: 0;
+  }
+  .plant {
+    right: 0;
+    top: 0;
+    &._2 {
+      top: 32px;
+    }
+  }
+  .carpet {
+    right: 128px; 
+    top: 64px;
+     &._2 {
+      right: 64px;
+      top: 128px;
+    }
+     &._3 {
+      right: 128px; 
+      top: 128px;
+    }
+     &._4 {
+      right: 64px;
+    }
+  }
+  .deko2 {
+    left: 160px;
+    bottom: 0;
+     &._2 {
+      left: 192px;
+    }
+    
+  }
+}
+.livingroom {
+  background: image('floor_32_01.jpg');
+  border-image: image("wall_32_01.png") $wall-width*1.5 stretch;
+  .door {
+    background: image('floor_32_01.jpg');
+
+    &[for="ra_2"] {
+      bottom: $wall-width*-1px;
+      left: 160px;
+    }
+    &[for="ra_3"] {
+      left: $wall-width*-1px;
+      bottom: 160px;
+    }
+  }
+  .carpet {
+    left: 128px;
+    top: 64px;
+  }
+  .girl {
+    left: 160px;
+    top: 192px;
+  }
+  .fireplace {
+    left: 128px;
+    top: 0;
+  }
+  .plant {
+    left: 96px;
+    top: 0;
+    &._2 {
+      left: 192px;
+    }
+  }
+  .deko1 {
+    right: 0;
+    top: 64px;
+  }
+  .deko2 {
+    left: 160px;
+    top: 32px;
+  }
+  .basket {
+    left: 0;
+    top: 192px;
+  }
+}
+.kitchen {
+  background: image('floor_32_05.jpg');
+  border-image: image("wall_32_02.png") $wall-width*1.5 stretch;
+  
+  .door {
+    background: image('floor_32_05.jpg');
+    &[for="ra_4"] {
+      right: $wall-width*-1px;
+      bottom: 160px;
+    }
+  }
+  .stove {
+    top: 0;
+    left: 0;
+  }
+  .sink {
+    top: 0;
+    left: 32px;
+  }
+  .table {
+    bottom: 64px;
+    left: 32px;
+  }
+}
+#ra_1 { 
+  &:focus {
+    ~.room {
+     left: calc(50% + #{$room-offset-x} - 160px - #{$character-width/2});
+     top: calc(50% - #{$room-offset-y});
+     transition-delay: 0s;
+    }
+  }
+  &:checked {
+    ~.livingroom {
+      display: block;
+    }
+  }
+}
+
+#ra_2 {
+  &:focus {
+    ~.room {
+     left: calc(50% + #{$room-offset-x} - 160px - #{$character-width/2});
+     top: calc(50% + #{$room-offset-y});
+     transition-delay: 0s;
+    }
+  }
+  &:checked {
+    ~.bedroom {
+      display: block;
+    }
+  }
+}
+
+#ra_3 { 
+  &:focus {
+    ~.room {
+     top: calc(50% + #{$room-offset-y} - 160px + #{$character-height*1.5});
+     left: calc(50% - #{$room-offset-x});
+     transition-delay: 0s;
+    }
+  }
+  &:checked {
+    ~.kitchen {
+      display: block;
+    }
+  }
+}
+
+#ra_4 { 
+  &:focus {
+    ~.room {
+     top: calc(50% + #{$room-offset-y} - 160px + #{$character-height*1.5});
+     left: calc(50% + #{$room-offset-x});
+     transition-delay: 0s;
+    }
+  }
+  &:checked {
+    ~.livingroom {
+      display: block;
+    }
+  }
+}
+
+
+// movement
+.right {
+  &:active {
+    ~ .room {
+      transition-delay: 9999s, 0s;
+      left: calc(50% - #{$room-offset-x});
+    }
+    ~ .character {
+      animation-name: right;
+    }
+  }
+}
+.left {
+  &:active {
+    ~ .room {
+      transition-delay: 9999s, 0s;
+      left: calc(50% + #{$room-offset-x});
+    }
+    ~ .character {
+      animation-name: left;
+    }
+  }
+}
+.down {
+  &:active {
+    ~ .room {
+      transition-delay: 0s, 9999s;
+      top: calc(50% - #{$room-offset-y});
+    }
+    ~ .character {
+      animation-name: down;
+    }
+  }
+}
+.up {
+  &:active {
+    ~ .room {
+      transition-delay: 0s, 9999s;
+      top: calc(50% + #{$room-offset-y});
+    }
+    ~ .character {
+      animation-name: up;
+    }
+  }
+}
+
+@keyframes down {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: $character-width*3 0;
+  }
+}
+@keyframes left {
+  from {
+    background-position: 0 $character-height*3;
+  }
+  to {
+    background-position: $character-width*3 $character-height*3;
+  }
+}
+@keyframes right {
+  from {
+    background-position: 0 $character-height*2;
+  }
+  to {
+    background-position: $character-width*3 $character-height*2;
+  }
+}
+@keyframes up {
+  from {
+    background-position: 0 $character-height*1;
+  }
+  to {
+    background-position: $character-width*3 $character-height*1;
+  }
+}
+// speak
+
+#ch_stove:focus {
+  ~.character {
+    &:before {
+      content: attr(data-stove);
+      animation-name: speak-stove;
+    }
+    &:after {
+      content: '';
+      animation-name: speak-stove;;
+    }
+  }
+}
+#ch_sink:focus {
+  ~.character {
+    &:before {
+      content: attr(data-sink);
+      animation-name: speak-sink;
+    }
+    &:after {
+      content: '';
+      animation-name: speak-sink;
+    }
+  }
+}
+
+#ch_bed:focus {
+  ~.bedroom {
+   animation: sleep 5s linear forwards;
+  }
+  ~.character {
+    &:before {
+      content: attr(data-bed);
+      animation-name: speak-bed;
+    }
+    &:after {
+      content: '';
+      animation-name: speak-bed;
+    }
+  }
+}
+#ch_table:focus {
+  ~.character {
+    &:before {
+      content: attr(data-table);
+      animation-name: speak-table;
+    }
+    &:after {
+      content: '';
+      animation-name: speak-table;
+    }
+  }
+}
+#ch_fireplace:focus {
+  ~.character {
+    &:before {
+      content: attr(data-fireplace);
+      animation-name: speak-fireplace;
+    }
+    &:after {
+      content: '';
+      animation-name: speak-fireplace;
+    }
+  }
+}
+@mixin speak($object) {
+  @keyframes speak-#{$object} {
+    0%, 80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}
+@keyframes sleep {
+  0%, 80% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@include speak(stove);
+@include speak(sink);
+@include speak(bed);
+@include speak(girl);
+@include speak(table);
+@include speak(fireplace);
+
+
+
+
+
+// explain
+.info {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: block;
+  height: 25px;
+  width: 25px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 100%;
+  border: 2px solid white;
+  background: black;
+  color: white;
+  font-family: VT323;
+}
+.explain {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,1);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  font-family: VT323;
+  
+  .title {
+    position: absolute;
+    font-size: 60px;
+    top: 100px;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+    left: 50%;
+    transform: translateX(-50%);
+    @include stroke(4, white);
+    color: black;
+    span {
+      display: block;
+      font-size: 18px;
+      margin-top: 10px;
+      color: inherit;
+      @include stroke(1, white);
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+ }
+
+  #ch_play:checked ~ & {
+    display: none;
+  }
+  
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    color: white;
+    border: 8px solid red;
+    padding: 20px;
+    line-height: 2em;
+    background-clip: padding-box;
+    background-image: image('modal_bg.png');
+    border-image: image("modal_bd.png") 8 repeat;
+   @include stroke(2, black);
+ }
+  .button {
+    position: relative;
+    display: flex;
+    background: image('button-play.png');
+    background-size: 100% 100%;
+    color: white;
+    font-weight: 700;
+    padding: 0.25em;
+    text-align: center;
+    justify-content: center;
+    font-family: VT323;
+    cursor: pointer;
+    &:active {
+      top: 2px;
+    }
+  }
+  .key {
+    font-size: 0.5em;
+    line-height: normal;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0.5em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px 3px 8px 3px;
+    border-color: #aaa #aaa #777 #aaa;
+    background: white;
+    color: #222;
+    font-family: sans-serif;
+    text-shadow: none;
+  }
+}
+
+
+audio {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  border: 8px solid transparent;
+  padding: 5px;
+  background-clip: padding-box;
+  background-image: image('modal_bg.png');
+  border-image: image("modal_bd.png") 8 repeat;
+
+  &::-webkit-media-controls-panel {
+    background: none;
+    -webkit-appearance: none;
+  }
+  &::-webkit-media-controls-current-time-display {
+    background: none;
+    font-family: VT323;
+    @include stroke(2, black);
+    color: white;
+    font-size: 16px;
+  }
+
+ 
+}

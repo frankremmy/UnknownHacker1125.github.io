@@ -1,0 +1,35 @@
+body {
+  background: black;
+}
+#wrapper {
+  color:white;
+  height: 343px;
+  width: 720px;
+  margin: 0 auto;
+  text-align:center;
+}
+#title {
+}
+#details {
+  font-size:15px;
+  margin: 5px auto;
+}
+#board {
+  height: 300px;
+  width: 720px;
+}
+
+// State info
+
+#hp {
+  color:lightgreen;
+}
+#xp {
+  color:gold;
+}
+#atk {
+  color:red;
+}
+#def {
+  color:lightsteelblue;
+}

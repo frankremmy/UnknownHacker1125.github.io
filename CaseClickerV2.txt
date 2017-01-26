@@ -1,0 +1,84 @@
+<!-- <audio src="https://s3-us-west-2.amazonaws.com/nickdesign/CSGO+Menu.mp3" autoplay></audio> -->
+
+<nav>
+  <ul class="nav__list">
+    <i class="fa fa-home list__icon"></i>
+    <li class="list__item">PLAY</li>
+    <li class="list__item">INVENTORY</li>
+    <li class="list__item">WATCH</li>
+    <li class="list__item">AWARDS</li>
+    <li class="list__item">OPTIONS</li>
+    <i class="list__icon material-icons">power_settings_new</i>
+  </ul>
+</nav>
+
+<div class="row">
+  <div class="player shadow">
+    <img class="player__avatar" src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/09/0948288cb04d7dbb011cf7ecde014360d25a1ab3_full.jpg"/>
+    <p class="player__name">Meds</p>
+    <div class="player__matches">
+      <p class="rounds">Competative Matches Won</p>
+      <i class="rounds fa fa-trophy"></i>
+      <p class="rounds">27</p>
+    </div>
+  </div>
+  
+  <div class="advertising">
+  </div>
+
+<div class="row">
+  <div class="friends shadow">
+    <div class="friends__header shadow">
+      <p class="title">Friends</p><p class="total">33 Online</p>
+    </div>
+    <div class="friends__friend">
+      <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/58/58892d1173626e9b3d41afd3fd2e952d66b8ee8e_full.jpg" class="friends__avatar">
+      <div class="friends__text">
+        <p class="friends__name">Nicholas Cage</p>
+        <p class="friends__status">Online</p>
+      </div>
+      <div class="friends__border"></div>
+    </div>
+    <div class="friends__friend">
+      <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/58/58892d1173626e9b3d41afd3fd2e952d66b8ee8e_full.jpg" class="friends__avatar">
+      <div class="friends__text">
+        <p class="friends__name">Nicholas Cage</p>
+        <p class="friends__status">Online</p>
+      </div>
+      <div class="friends__border"></div>
+    </div>
+    <div class="friends__friend">
+      <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/58/58892d1173626e9b3d41afd3fd2e952d66b8ee8e_full.jpg" class="friends__avatar">
+      <div class="friends__text">
+        <p class="friends__name">Nicholas Cage</p>
+        <p class="friends__status">Online</p>
+      </div>
+      <div class="friends__border"></div>
+    </div>
+    <div class="friends__friend">
+      <img src="http://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/58/58892d1173626e9b3d41afd3fd2e952d66b8ee8e_full.jpg" class="friends__avatar">
+      <div class="friends__text">
+        <p class="friends__name">Nicholas Cage</p>
+        <p class="friends__status">Online</p>
+      </div>
+      <div class="friends__border"></div>
+    </div>
+  </div>
+
+<div class="news">
+  <div class="news__header shadow">
+    News
+  </div>
+  <div class="news__content">
+    CS:GO's Winter Update
+    
+    11 DEC 2015
+    
+    Welcome to the CS:GO Winter Update, filled with holiday cheer. There's something for everyone, including a brand new pistol, a new weapon case, gameplay adjustments, the all-new Killer Replay feature, and more!
+    
+    Click <a href="#">here</a> for the release notes, or read on for more details.
+    
+    R8 Revolver
+  </div>
+</div>
+</div>

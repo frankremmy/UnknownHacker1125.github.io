@@ -1,0 +1,908 @@
+@import url(http://fonts.googleapis.com/css?family=VT323);
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: black;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+body:before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  height: 170px;
+  width: 170px;
+  background-clip: padding-box;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/modal_bg.png");
+  -webkit-border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/modal_bd.png") 8 repeat;
+       -o-border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/modal_bd.png") 8 repeat;
+          border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/modal_bd.png") 8 repeat;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  color: transparent;
+}
+*:focus, *:before:focus, *:after:focus {
+  outline: 0;
+}
+
+.control {
+  position: absolute;
+  z-index: 10;
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+          align-content: center;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 10px;
+  padding: 0.25em;
+  margin: 0.25em;
+  background: transparent;
+  border: 0 solid red;
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_point.cur"), pointer;
+}
+.control:focus {
+  color: white;
+  outline: 0;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+.control:active {
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+}
+.control.up {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_up.png");
+  top: 10px;
+  left: 55px;
+}
+.control.down {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_down.png");
+  top: 100px;
+  left: 55px;
+}
+.control.left {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_left.png");
+  top: 55px;
+  left: 10px;
+}
+.control.right {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_right.png");
+  top: 55px;
+  left: 100px;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  position: absolute;
+  top: -1em;
+  left: -2em;
+}
+
+label {
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_point.cur"), pointer;
+}
+
+.room {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 320px;
+  width: 320px;
+  background-color: transparent;
+  display: none;
+  border: 8px solid transparent;
+  z-index: 1;
+  box-sizing: content-box;
+  -webkit-transition-delay: 99999999999999s;
+          transition-delay: 99999999999999s;
+  -webkit-transition-property: top, left;
+  transition-property: top, left;
+  -webkit-transition-duration: 2s;
+          transition-duration: 2s;
+  -webkit-transition-timing-function: linear;
+          transition-timing-function: linear;
+}
+.room:before {
+  position: absolute;
+  top: -150px;
+  right: 0;
+  left: 0;
+  text-align: center;
+  padding: 0.5em 1em;
+  font-family: VT323;
+  font-size: 3em;
+  color: black;
+  text-shadow: -2px -2px 0 white, -2px -1px 0 white, -2px 0px 0 white, -2px 1px 0 white, -2px 2px 0 white, -1px -2px 0 white, -1px -1px 0 white, -1px 0px 0 white, -1px 1px 0 white, -1px 2px 0 white, 0px -2px 0 white, 0px -1px 0 white, 0px 0px 0 white, 0px 1px 0 white, 0px 2px 0 white, 1px -2px 0 white, 1px -1px 0 white, 1px 0px 0 white, 1px 1px 0 white, 1px 2px 0 white, 2px -2px 0 white, 2px -1px 0 white, 2px 0px 0 white, 2px 1px 0 white, 2px 2px 0 white;
+}
+
+.bed {
+  display: block;
+  position: absolute;
+  height: 64px;
+  width: 32px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/bed_32-64_01.jpg");
+}
+
+.carpet {
+  display: block;
+  position: absolute;
+  height: 64px;
+  width: 64px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/carpet_64_01.jpg");
+}
+
+.stove {
+  display: block;
+  position: absolute;
+  height: 28px;
+  width: 32px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/stove_32-28_01.jpg");
+}
+
+.sink {
+  display: block;
+  position: absolute;
+  height: 28px;
+  width: 96px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/sink_96-28_01.jpg");
+}
+
+.table {
+  display: block;
+  position: absolute;
+  height: 64px;
+  width: 32px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/table_32-64_01.jpg");
+}
+
+.plant {
+  display: block;
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_plant_32_1.png");
+}
+
+.deko1 {
+  display: block;
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_deko_32_1.png");
+}
+
+.deko2 {
+  display: block;
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_deko_32_2.png");
+}
+
+.basket {
+  display: block;
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_basket_32_1.png");
+}
+
+.fireplace {
+  display: block;
+  position: absolute;
+  height: 16px;
+  width: 64px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_fireplace_64-16_1.png");
+}
+
+.character {
+  height: 32px;
+  width: 32px;
+  margin: -16px -16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/character_32_01.jpg");
+  background-size: 128px;
+  background-position: 32px 0;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: steps(3);
+          animation-timing-function: steps(3);
+  z-index: 2;
+}
+.character:before {
+  position: absolute;
+  bottom: 100%;
+  left: 100%;
+  width: 150px;
+  text-align: center;
+  background: white;
+  border-radius: 3px;
+  border: 2px solid black;
+  padding: 3px;
+  font-family: VT323;
+  color: black;
+  -webkit-animation: speak-intro 5s linear forwards;
+          animation: speak-intro 5s linear forwards;
+}
+.character:after {
+  height: 10px;
+  width: 20px;
+  position: absolute;
+  bottom: 100%;
+  left: 100%;
+  margin: -8px;
+  border-radius: 0 0 50% 50%;
+  -webkit-animation: speak-intro 5s linear forwards;
+          animation: speak-intro 5s linear forwards;
+  box-shadow: inset -7px 0 0 white, inset -9px 0 0 black, 2px 2px 0 black;
+}
+
+.girl {
+  height: 32px;
+  width: 32px;
+  position: absolute;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_girl.png");
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/rpg_speak.png"), pointer;
+  background-size: 32px 32px;
+}
+.girl:before {
+  position: absolute;
+  bottom: 100%;
+  left: 100%;
+  width: 150px;
+  text-align: center;
+  background: white;
+  color: black;
+  border-radius: 3px;
+  border: 2px solid black;
+  padding: 3px;
+  font-family: VT323;
+  -webkit-animation: speak-intro 5s linear forwards;
+          animation: speak-intro 5s linear forwards;
+}
+.girl:after {
+  height: 10px;
+  width: 20px;
+  position: absolute;
+  bottom: 100%;
+  left: 100%;
+  margin: -8px;
+  border-radius: 0 0 50% 50%;
+  -webkit-animation: speak-intro 5s linear forwards;
+          animation: speak-intro 5s linear forwards;
+  box-shadow: inset -7px 0 0 white, inset -9px 0 0 black, 2px 2px 0 black;
+}
+.girl:focus:before {
+  content: attr(data-speak);
+  -webkit-animation-name: speak-girl;
+          animation-name: speak-girl;
+}
+.girl:focus:after {
+  content: '';
+  -webkit-animation-name: speak-girl;
+          animation-name: speak-girl;
+}
+
+.door {
+  position: absolute;
+  background: blue;
+  background-size: 32px 32px;
+}
+.door.vertical {
+  width: 8px;
+  height: 64px;
+}
+.door.horizontal {
+  height: 8px;
+  width: 64px;
+}
+
+.bedroom {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/floor_32_03.jpg");
+  -webkit-border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/wall_32_02.png") 12 stretch;
+       -o-border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/wall_32_02.png") 12 stretch;
+          border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/wall_32_02.png") 12 stretch;
+}
+.bedroom .door {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/floor_32_03.jpg");
+  top: -8px;
+  left: 160px;
+}
+.bedroom .bed {
+  top: 0;
+  left: 0;
+}
+.bedroom .plant {
+  right: 0;
+  top: 0;
+}
+.bedroom .plant._2 {
+  top: 32px;
+}
+.bedroom .carpet {
+  right: 128px;
+  top: 64px;
+}
+.bedroom .carpet._2 {
+  right: 64px;
+  top: 128px;
+}
+.bedroom .carpet._3 {
+  right: 128px;
+  top: 128px;
+}
+.bedroom .carpet._4 {
+  right: 64px;
+}
+.bedroom .deko2 {
+  left: 160px;
+  bottom: 0;
+}
+.bedroom .deko2._2 {
+  left: 192px;
+}
+
+.livingroom {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/floor_32_01.jpg");
+  -webkit-border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/wall_32_01.png") 12 stretch;
+       -o-border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/wall_32_01.png") 12 stretch;
+          border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/wall_32_01.png") 12 stretch;
+}
+.livingroom .door {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/floor_32_01.jpg");
+}
+.livingroom .door[for="ra_2"] {
+  bottom: -8px;
+  left: 160px;
+}
+.livingroom .door[for="ra_3"] {
+  left: -8px;
+  bottom: 160px;
+}
+.livingroom .carpet {
+  left: 128px;
+  top: 64px;
+}
+.livingroom .girl {
+  left: 160px;
+  top: 192px;
+}
+.livingroom .fireplace {
+  left: 128px;
+  top: 0;
+}
+.livingroom .plant {
+  left: 96px;
+  top: 0;
+}
+.livingroom .plant._2 {
+  left: 192px;
+}
+.livingroom .deko1 {
+  right: 0;
+  top: 64px;
+}
+.livingroom .deko2 {
+  left: 160px;
+  top: 32px;
+}
+.livingroom .basket {
+  left: 0;
+  top: 192px;
+}
+
+.kitchen {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/floor_32_05.jpg");
+  -webkit-border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/wall_32_02.png") 12 stretch;
+       -o-border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/wall_32_02.png") 12 stretch;
+          border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/wall_32_02.png") 12 stretch;
+}
+.kitchen .door {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/floor_32_05.jpg");
+}
+.kitchen .door[for="ra_4"] {
+  right: -8px;
+  bottom: 160px;
+}
+.kitchen .stove {
+  top: 0;
+  left: 0;
+}
+.kitchen .sink {
+  top: 0;
+  left: 32px;
+}
+.kitchen .table {
+  bottom: 64px;
+  left: 32px;
+}
+
+#ra_1:focus ~ .room {
+  left: calc(50% + 144px - 160px - 16px);
+  top: calc(50% - 144px);
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+#ra_1:checked ~ .livingroom {
+  display: block;
+}
+
+#ra_2:focus ~ .room {
+  left: calc(50% + 144px - 160px - 16px);
+  top: calc(50% + 144px);
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+#ra_2:checked ~ .bedroom {
+  display: block;
+}
+
+#ra_3:focus ~ .room {
+  top: calc(50% + 144px - 160px + 48px);
+  left: calc(50% - 144px);
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+#ra_3:checked ~ .kitchen {
+  display: block;
+}
+
+#ra_4:focus ~ .room {
+  top: calc(50% + 144px - 160px + 48px);
+  left: calc(50% + 144px);
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+#ra_4:checked ~ .livingroom {
+  display: block;
+}
+
+.right:active ~ .room {
+  -webkit-transition-delay: 9999s, 0s;
+          transition-delay: 9999s, 0s;
+  left: calc(50% - 144px);
+}
+.right:active ~ .character {
+  -webkit-animation-name: right;
+          animation-name: right;
+}
+
+.left:active ~ .room {
+  -webkit-transition-delay: 9999s, 0s;
+          transition-delay: 9999s, 0s;
+  left: calc(50% + 144px);
+}
+.left:active ~ .character {
+  -webkit-animation-name: left;
+          animation-name: left;
+}
+
+.down:active ~ .room {
+  -webkit-transition-delay: 0s, 9999s;
+          transition-delay: 0s, 9999s;
+  top: calc(50% - 144px);
+}
+.down:active ~ .character {
+  -webkit-animation-name: down;
+          animation-name: down;
+}
+
+.up:active ~ .room {
+  -webkit-transition-delay: 0s, 9999s;
+          transition-delay: 0s, 9999s;
+  top: calc(50% + 144px);
+}
+.up:active ~ .character {
+  -webkit-animation-name: up;
+          animation-name: up;
+}
+
+@-webkit-keyframes down {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 96px 0;
+  }
+}
+
+@keyframes down {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 96px 0;
+  }
+}
+@-webkit-keyframes left {
+  from {
+    background-position: 0 96px;
+  }
+  to {
+    background-position: 96px 96px;
+  }
+}
+@keyframes left {
+  from {
+    background-position: 0 96px;
+  }
+  to {
+    background-position: 96px 96px;
+  }
+}
+@-webkit-keyframes right {
+  from {
+    background-position: 0 64px;
+  }
+  to {
+    background-position: 96px 64px;
+  }
+}
+@keyframes right {
+  from {
+    background-position: 0 64px;
+  }
+  to {
+    background-position: 96px 64px;
+  }
+}
+@-webkit-keyframes up {
+  from {
+    background-position: 0 32px;
+  }
+  to {
+    background-position: 96px 32px;
+  }
+}
+@keyframes up {
+  from {
+    background-position: 0 32px;
+  }
+  to {
+    background-position: 96px 32px;
+  }
+}
+#ch_stove:focus ~ .character:before {
+  content: attr(data-stove);
+  -webkit-animation-name: speak-stove;
+          animation-name: speak-stove;
+}
+#ch_stove:focus ~ .character:after {
+  content: '';
+  -webkit-animation-name: speak-stove;
+          animation-name: speak-stove;
+}
+
+#ch_sink:focus ~ .character:before {
+  content: attr(data-sink);
+  -webkit-animation-name: speak-sink;
+          animation-name: speak-sink;
+}
+#ch_sink:focus ~ .character:after {
+  content: '';
+  -webkit-animation-name: speak-sink;
+          animation-name: speak-sink;
+}
+
+#ch_bed:focus ~ .bedroom {
+  -webkit-animation: sleep 5s linear forwards;
+          animation: sleep 5s linear forwards;
+}
+#ch_bed:focus ~ .character:before {
+  content: attr(data-bed);
+  -webkit-animation-name: speak-bed;
+          animation-name: speak-bed;
+}
+#ch_bed:focus ~ .character:after {
+  content: '';
+  -webkit-animation-name: speak-bed;
+          animation-name: speak-bed;
+}
+
+#ch_table:focus ~ .character:before {
+  content: attr(data-table);
+  -webkit-animation-name: speak-table;
+          animation-name: speak-table;
+}
+#ch_table:focus ~ .character:after {
+  content: '';
+  -webkit-animation-name: speak-table;
+          animation-name: speak-table;
+}
+
+#ch_fireplace:focus ~ .character:before {
+  content: attr(data-fireplace);
+  -webkit-animation-name: speak-fireplace;
+          animation-name: speak-fireplace;
+}
+#ch_fireplace:focus ~ .character:after {
+  content: '';
+  -webkit-animation-name: speak-fireplace;
+          animation-name: speak-fireplace;
+}
+
+@-webkit-keyframes sleep {
+  0%, 80% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes sleep {
+  0%, 80% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes speak-stove {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes speak-stove {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes speak-sink {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes speak-sink {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes speak-bed {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes speak-bed {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes speak-girl {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes speak-girl {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes speak-table {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes speak-table {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes speak-fireplace {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes speak-fireplace {
+  0%, 80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.info {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: block;
+  height: 25px;
+  width: 25px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 100%;
+  border: 2px solid white;
+  background: black;
+  color: white;
+  font-family: VT323;
+}
+
+.explain {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: black;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+          align-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: VT323;
+}
+.explain .title {
+  position: absolute;
+  font-size: 60px;
+  top: 100px;
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  text-shadow: -4px -4px 0 white, -4px -3px 0 white, -4px -2px 0 white, -4px -1px 0 white, -4px 0px 0 white, -4px 1px 0 white, -4px 2px 0 white, -4px 3px 0 white, -4px 4px 0 white, -3px -4px 0 white, -3px -3px 0 white, -3px -2px 0 white, -3px -1px 0 white, -3px 0px 0 white, -3px 1px 0 white, -3px 2px 0 white, -3px 3px 0 white, -3px 4px 0 white, -2px -4px 0 white, -2px -3px 0 white, -2px -2px 0 white, -2px -1px 0 white, -2px 0px 0 white, -2px 1px 0 white, -2px 2px 0 white, -2px 3px 0 white, -2px 4px 0 white, -1px -4px 0 white, -1px -3px 0 white, -1px -2px 0 white, -1px -1px 0 white, -1px 0px 0 white, -1px 1px 0 white, -1px 2px 0 white, -1px 3px 0 white, -1px 4px 0 white, 0px -4px 0 white, 0px -3px 0 white, 0px -2px 0 white, 0px -1px 0 white, 0px 0px 0 white, 0px 1px 0 white, 0px 2px 0 white, 0px 3px 0 white, 0px 4px 0 white, 1px -4px 0 white, 1px -3px 0 white, 1px -2px 0 white, 1px -1px 0 white, 1px 0px 0 white, 1px 1px 0 white, 1px 2px 0 white, 1px 3px 0 white, 1px 4px 0 white, 2px -4px 0 white, 2px -3px 0 white, 2px -2px 0 white, 2px -1px 0 white, 2px 0px 0 white, 2px 1px 0 white, 2px 2px 0 white, 2px 3px 0 white, 2px 4px 0 white, 3px -4px 0 white, 3px -3px 0 white, 3px -2px 0 white, 3px -1px 0 white, 3px 0px 0 white, 3px 1px 0 white, 3px 2px 0 white, 3px 3px 0 white, 3px 4px 0 white, 4px -4px 0 white, 4px -3px 0 white, 4px -2px 0 white, 4px -1px 0 white, 4px 0px 0 white, 4px 1px 0 white, 4px 2px 0 white, 4px 3px 0 white, 4px 4px 0 white;
+  color: black;
+}
+.explain .title span {
+  display: block;
+  font-size: 18px;
+  margin-top: 10px;
+  color: inherit;
+  text-shadow: -1px -1px 0 white, -1px 0px 0 white, -1px 1px 0 white, 0px -1px 0 white, 0px 0px 0 white, 0px 1px 0 white, 1px -1px 0 white, 1px 0px 0 white, 1px 1px 0 white;
+}
+.explain .title span a {
+  color: inherit;
+  text-decoration: none;
+}
+#ch_play:checked ~ .explain {
+  display: none;
+}
+.explain .modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 350px;
+  color: white;
+  border: 8px solid red;
+  padding: 20px;
+  line-height: 2em;
+  background-clip: padding-box;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/modal_bg.png");
+  -webkit-border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/modal_bd.png") 8 repeat;
+       -o-border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/modal_bd.png") 8 repeat;
+          border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/modal_bd.png") 8 repeat;
+  text-shadow: -2px -2px 0 black, -2px -1px 0 black, -2px 0px 0 black, -2px 1px 0 black, -2px 2px 0 black, -1px -2px 0 black, -1px -1px 0 black, -1px 0px 0 black, -1px 1px 0 black, -1px 2px 0 black, 0px -2px 0 black, 0px -1px 0 black, 0px 0px 0 black, 0px 1px 0 black, 0px 2px 0 black, 1px -2px 0 black, 1px -1px 0 black, 1px 0px 0 black, 1px 1px 0 black, 1px 2px 0 black, 2px -2px 0 black, 2px -1px 0 black, 2px 0px 0 black, 2px 1px 0 black, 2px 2px 0 black;
+}
+.explain .button {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/button-play.png");
+  background-size: 100% 100%;
+  color: white;
+  font-weight: 700;
+  padding: 0.25em;
+  text-align: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: VT323;
+  cursor: pointer;
+}
+.explain .button:active {
+  top: 2px;
+}
+.explain .key {
+  font-size: 0.5em;
+  line-height: normal;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.5em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px 3px 8px 3px;
+  border-color: #aaa #aaa #777 #aaa;
+  background: white;
+  color: #222;
+  font-family: sans-serif;
+  text-shadow: none;
+}
+
+audio {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  border: 8px solid transparent;
+  padding: 5px;
+  background-clip: padding-box;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/modal_bg.png");
+  -webkit-border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/modal_bd.png") 8 repeat;
+       -o-border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/modal_bd.png") 8 repeat;
+          border-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/28359/modal_bd.png") 8 repeat;
+}
+audio::-webkit-media-controls-panel {
+  background: none;
+  -webkit-appearance: none;
+}
+audio::-webkit-media-controls-current-time-display {
+  background: none;
+  font-family: VT323;
+  text-shadow: -2px -2px 0 black, -2px -1px 0 black, -2px 0px 0 black, -2px 1px 0 black, -2px 2px 0 black, -1px -2px 0 black, -1px -1px 0 black, -1px 0px 0 black, -1px 1px 0 black, -1px 2px 0 black, 0px -2px 0 black, 0px -1px 0 black, 0px 0px 0 black, 0px 1px 0 black, 0px 2px 0 black, 1px -2px 0 black, 1px -1px 0 black, 1px 0px 0 black, 1px 1px 0 black, 1px 2px 0 black, 2px -2px 0 black, 2px -1px 0 black, 2px 0px 0 black, 2px 1px 0 black, 2px 2px 0 black;
+  color: white;
+  font-size: 16px;
+}

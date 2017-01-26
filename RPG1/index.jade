@@ -1,0 +1,102 @@
+mixin radio(id, checked)
+  input(type="radio" id="ra_#{id}" name="ra" checked=checked)
+  
+mixin checkbox(id, checked)
+  input(type="checkbox" id="ch_#{id}" checked=checked)
+  
+mixin door(id, vertical)
+  label.door(for="ra_#{id}" class=vertical?'vertical':'horizontal')
+  
+mixin room(name)
+  .room(class=name data-room=name)
+    if block
+      block
+    
+
++checkbox('play')
++checkbox('bed')
++checkbox('stove')
++checkbox('sink')
++checkbox('table')
++checkbox('fireplace')
+
++radio(1,true)
++radio(2)
++radio(3)
++radio(4)
+
+button.control.up(accesskey="w")
+button.control.left(accesskey="a")
+button.control.down(accesskey="s")
+button.control.right(accesskey="d")
+label.info(for="ch_play") i
+
+
+
++room("bedroom")
+  +door(1)
+  .carpet
+  .carpet._2
+  .carpet._3
+  .carpet._4
+  .deko2
+  .deko2._2
+  .plant
+  .plant._2
+  label.bed(for="ch_bed") 
++room("livingroom")
+  +door(2)
+  +door(3, true)
+  .carpet
+  .plant
+  .plant._2
+  .basket
+  label.fireplace(for="ch_fireplace")
+  .deko1
+  .deko2
+  .girl(data-speak="Hi Edgar, how are you doing?" tabindex="0")
++room("kitchen")
+  +door(4, true)
+  label.stove(for="ch_stove")   
+  label.sink(for="ch_sink")
+  label.table(for="ch_table")
+    .plant
+
+  
+.character(
+  data-fireplace="The fire is nice and warm"
+  data-sink="I don't want to do the dishes now"
+  data-stove="I'm not hungy right now"
+  data-table="This is a table"
+  data-bed="Zzzzzzzzzz"
+  )
+
+
+.explain
+  h1.title Edgars Lair
+    span a pure CSS RPG by 
+      a(href="https://twitter.com/GregorAdams" target="blank") @GregorAdams
+  .modal
+    .key ctrl
+    |  +
+    .key alt
+    |  + 
+    .key W
+    |  or
+    .key A
+    |  or
+    .key S
+    |  or
+    .key D
+    |  then
+    .key space
+    |  or click buttons to walk
+    br
+    | Click on wall-gaps to change the room.
+    br
+    | Click on objects to interact.
+    br
+    label.button(for="ch_play") play
+  audio(controls loop autoplay)
+    source(src="http://pixelass.com/rpg_sound_3.mp3")    
+    source(src="http://pixelass.com/rpg_sound_3.ogg")

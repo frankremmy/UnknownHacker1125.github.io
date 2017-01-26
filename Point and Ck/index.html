@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Point & Click Browser Game Prototype</title>
+    
+    
+    
+    <link rel='stylesheet prefetch' href='css/agdeh.css'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Ubuntu:300,500,700'>
+
+        <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      @import "compass/css3";
+
+/** 
+ * Colors 
+ */
+$emw--color-alpha: rgba(#ecf0f1, .5);
+$emw--color-beta: rgba(#2c3e50, .3);
+$emw--color-gamma: rgba(#e74c3c, .3);
+$emw--color-delta: rgba(#f1c40f, .3);
+
+
+/** 
+ * Units 
+ */
+$emw--unit-alpha: 4em;
+$emw--unit-beta: .25s transform ease-in-out, .25s filter ease-in-out, .25s opacity ease-in-out;
+
+
+
+
+
+/**
+ * Modifier
+ */
+%emw__modifier-alpha {
+  position: absolute;
+  width: $emw--unit-alpha;
+  height: $emw--unit-alpha;
+  background: $emw--color-beta;
+  border-radius: 50%;
+    box-shadow: 
+      0 0 0 1em rgba(#fff, .05),
+      0 0 0 1.25em rgba(#fff, .05),
+      0 0 0 1.5em rgba(#fff, .05),
+      0 0 0 1.75em rgba(#fff, .05)
+    ;
+  opacity: .2;
+  
+  animation: beta 5s infinite forwards -1.25s;
+  
+  @include transition($emw--unit-beta);
+  
+  &:hover {
+    @include transform(scale(1.25, 1.25));
+    opacity: .6;
+    animation: none;
+    box-shadow: 
+      0 0 0 1em rgba(#fff, .45),
+      0 0 0 1.25em rgba(#fff, .45),
+      0 0 0 1.5em rgba(#fff, .45),
+      0 0 0 1.75em rgba(#fff, .45)
+    ;
+  }
+  
+  &:active {
+    @include transform(scale(1.05, 1.05));
+    opacity: .6;
+    box-shadow: 
+      0 0 0 1em rgba(#fff, .45),
+      0 0 0 1.25em rgba(#fff, .45),
+      0 0 0 1.5em rgba(#fff, .45),
+      0 0 0 1.75em rgba(#fff, .45)
+    ;
+  }
+}
+
+@keyframes beta {
+  0%, 60%, 100% {
+    box-shadow: 
+      0 0 0 1em rgba(#fff, .05),
+      0 0 0 1.25em rgba(#fff, .05),
+      0 0 0 1.5em rgba(#fff, .05),
+      0 0 0 1.75em rgba(#fff, .05)
+    ;
+  }
+  
+  30% {
+    opacity: .6;
+    box-shadow: 
+      0 0 0 1em rgba(#fff, .45),
+      0 0 0 1.25em rgba(#fff, .45),
+      0 0 0 1.5em rgba(#fff, .45),
+      0 0 0 1.75em rgba(#fff, .45)
+    ;
+  }
+}
+
+%emw__modifier-beta {
+  background: $emw--color-beta;
+  color: #fff;
+  padding: 0 .25em 0 0;
+    
+  h2 {
+    font-size: 2em;
+    display: inline-block;
+    margin: .25em 0;
+  }
+  
+  span {
+    cursor: pointer;
+  }
+}
+
+
+
+
+
+/**
+ * Styles
+ */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+#game {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font: 1em 'Ubuntu', sans-serif;
+  margin: 0;
+  
+  background: url(https://s.cdpn.io/1202/01_intro.jpg);
+  background-size: cover;
+  
+  //@include transition(background .25s ease-in);
+  
+  &.alpha {
+    background: url(https://s.cdpn.io/1202/01_intro.jpg);
+    background-size: cover;
+  }
+  
+  &.beta {
+    background: url(https://s.cdpn.io/1202/02_piratebox.jpg);
+    background-size: cover;
+  }
+  
+  &.gamma {
+    background: url(https://s.cdpn.io/1202/03_corridor.jpg);
+    background-size: cover;
+  }
+}
+
+.animate {
+  animation: animate 1s 1;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+  }
+  
+  100% {
+    opacity: 1;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+img {
+  @extend %center;
+  max-height: 100%;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  &.nav--alpha {
+    @extend %emw__modifier-beta;
+    
+    position: absolute;
+    bottom: .75em;
+    right: .75em;
+    
+    ul {
+      > li {
+        float: left;
+        margin: 0 .35em;
+        
+        &:nth-child(1) {
+          border-right: .25em solid #fff;
+          padding-right: .5em;
+        }
+        
+        &:nth-child(2) {
+          padding-top: .5em;
+        }
+      }
+    }
+  }
+}
+
+.heart {
+  color: rgba($emw--color-gamma, .9);
+}
+
+.sum {
+  color: rgba($emw--color-delta, .9);
+  font-weight: 700;
+}
+
+
+
+
+
+.message--alpha {
+  @extend %emw__modifier-beta;
+  
+  position: absolute;
+  bottom: 5em;
+  right: .75em;
+  padding: 0;
+  opacity: .4;
+  
+  @include transition(opacity .15s ease-in-out);
+  
+  &:hover {
+    opacity: 1;
+  }
+
+  > ul {
+    margin: 0;
+    
+    > li {
+      float: none;
+      border: none;
+      padding: .5em;
+      margin: 0;
+      border-bottom: .15em solid #fff;
+      
+      &:last-child {
+        border: none;
+      }
+      
+      &:before {
+        content:'\203A';
+        margin-right: .5em;
+      }
+    }
+  }
+  
+}
+
+
+
+
+.object--alpha {
+  @extend %emw__modifier-alpha;
+  
+  top: 80%;
+  left: 5em;
+}
+
+.object--beta {
+  @extend %emw__modifier-alpha;
+  top: 30%;
+  right: 5em;
+}
+    </style>
+
+    
+        <script src="js/prefixfree.min.js"></script>
+
+    
+  </head>
+
+  <body>
+
+    <div id="game">
+
+  <a href="#" class="object--alpha"></a>
+  <a href="#" class="object--beta"></a>
+  
+  <nav class="nav--alpha">
+    <ul>
+      <li><h2>Flash Gordon</h2></li>
+      <li>
+        <span class="heart" title="HP">♥</span> 100%
+        <br>
+        <span class="sum" title="LEVEL">&Xi;</span> 7
+      </li>
+    </ul>
+  </nav>  
+    
+  <section class="message--alpha">
+    <ul>
+      <li>You need a knife.</li>
+      <li>Cash keeps you happy. </li>
+    </ul>  
+  </section>
+  
+</div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+        <script src="js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>

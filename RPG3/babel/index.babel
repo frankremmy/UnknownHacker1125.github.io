@@ -1,0 +1,543 @@
+class Board extends React.Component {
+        constructor(props) {
+            super(props);
+            // Monsters & items declaration
+            this.monsters = [];
+            this.items = [];
+            // Options - visible screen size (used by display func)
+            this.options = {
+                width: 80,
+                height: 30
+            };
+            // Player constructor
+            this.Entity = function(props) {
+                this.char = props.char || '⚇';
+                this.fg = props.fg || 'blue';
+                this.bg = props.bg || 'white';
+                this.x = props.x || 0;
+                this.y = props.y || 0;
+                // Field of vision
+                this.vision = props.vision || 6;
+                // Stats - defaults will fit player
+                this.hp = props.hp || 100;
+                this.lvl = props.lvl || 1;
+                this.exp = props.exp || 0;
+                this.atk = props.atk || 7;
+                this.def = props.def || 3;
+                // Player wep & armour
+                this.wep = props.wep || 'Fists';
+                this.armour = props.armour || 'Cloth Headband';
+            };
+            // Immediately create instance of player for later use
+            this.Entity.player = new this.Entity({});
+
+            // Item constructors
+            this.Item = function(props) {
+                this.name = "Potion";
+                this.type = "potion";
+                this.char = '⚕';
+                this.fg = 'green';
+                this.bg = 'white';
+                this.x = 0;
+                this.y = 0;
+                this.hp = 35;
+            };
+            this.Item.weapon = function(props) {
+                this.name = props.name || "Oversized Axe";
+                this.type = props.type || "weapon";
+                this.char = props.char || '⚔';
+                this.fg = props.fg || 'gray';
+                this.bg = props.bg || 'white';
+                this.x = props.x || 0;
+                this.y = props.y || 0;
+                this.atk = props.atk || 0;
+            };
+            this.Item.armour = function(props) {
+                this.name = props.name || "Steel Plate";
+                this.type = props.type || "armour";
+                this.char = props.char || '#';
+                this.fg = props.fg || 'gray';
+                this.bg = props.bg || 'white';
+                this.x = props.x || 0;
+                this.y = props.y || 0;
+                this.def = props.def || 0;
+            };
+
+            // Slime constructor (lvl 1 enemy)
+            this.Entity.slime = function() {
+                this.name = "Slime";
+                this.char = '©';
+                this.fg = 'red';
+                this.bg = 'white';
+                this.x = 0;
+                this.y = 0;
+                this.hp = 50;
+                this.atk = 7;
+                this.yieldExp = props.yieldExp || 50;
+            };
+
+            // Succubus constructor (lvl 2 enemy)
+            this.Entity.succubus = function() {
+                this.name = "Succubus";
+                this.char = '☿';
+                this.fg = 'red';
+                this.bg = 'white';
+                this.x = 0;
+                this.y = 0;
+                this.hp = 80;
+                this.atk = 15;
+                this.yieldExp = props.yieldExp || 100;
+            };
+
+            // Cacodemon constructor (lvl 3 enemy)
+            this.Entity.cacodemon = function() {
+                this.name = "Cacodemon";
+                this.char = '☼';
+                this.fg = 'red';
+                this.bg = 'white';
+                this.x = 0;
+                this.y = 0;
+                this.hp = 115;
+                this.atk = 20;
+                this.yieldExp = props.yieldExp || 300;
+            };
+
+            // Baron constructor (lvl 4 enemy)
+            this.Entity.baron = function() {
+                this.name = "Baron of Hell";
+                this.char = '♝';
+                this.fg = 'red';
+                this.bg = 'white';
+                this.x = 0;
+                this.y = 0;
+                this.hp = 175;
+                this.atk = 30;
+                this.yieldExp = props.yieldExp || 400;
+            };
+
+            // Boss constructor
+            this.Entity.boss = function() {
+                this.name = "Cyberdemon";
+                this.type = "boss";
+                this.char = '⚉';
+                this.fg = 'red';
+                this.bg = 'white';
+                this.x = 0;
+                this.y = 0;
+                this.hp = 200;
+                this.atk = 40;
+                this.yieldExp = props.yieldExp || 400;
+            };
+            // Constructor for tiles
+            this.Tile = function(props) {
+                this.isWall = props.isWall || false;
+                this.char = props.char || ' ';
+                this.fg = props.fg || '';
+                this.bg = props.bg || 'black';
+            };
+            // Set up tiles
+            this.Tile.landTile = new this.Tile({
+                char: '',
+                bg: 'white'
+            });
+            this.Tile.wallTile = new this.Tile({
+                isWall: true,
+                char: '',
+                bg: 'black'
+            });
+            // Display screen set up
+            this.display = new ROT.Display({
+                width: this.options.width,
+                height: this.options.height
+            });
+            // Declare initial state
+            this.state = {
+                player: this.Entity.player,
+                level: {
+                    level: 1,
+                    name: 'Spooky Dungeon'
+                },
+                message: "You are exploring"
+            };
+        }
+        mapSetup(dungeonLevel = 1, wepAndArmour) {
+            const w = this.options.width,
+                h = this.options.height;
+            var map = new ROT.Map.Digger(w, h);
+            this.hash = {};
+            var mapLayout = [];
+            // This will use the 'Digger' algo to set arg 'type' below as 1 for tiles that are land tiles
+            map.create((x, y, type) => {
+                this.hash[x + "," + y] = type;
+                let placeTile = type === 1 ? this.Tile.wallTile : this.Tile.landTile;
+                mapLayout[x] ? mapLayout[x].push(placeTile) : mapLayout.push([placeTile]);
+            });
+
+            // Store rooms in rooms var (arr of objs, _x1 _x2, _y1 _y2 defining boundaries)
+            var rooms = map.getRooms();
+            // Draw the player. Put them in the first room, then shift that out of the rooms arr to keep it empty.
+            this.Entity.player.x = ROT.RNG.getUniformInt(rooms[0]['_x1'], rooms[0]['_x2']);
+            this.Entity.player.y = ROT.RNG.getUniformInt(rooms[0]['_y1'], rooms[0]['_y2']);
+            rooms.shift();
+            // Create monsters depending on the current level
+            let slime = this.Entity.slime,
+                succubus = this.Entity.succubus,
+                cacodemon = this.Entity.cacodemon,
+                baron = this.Entity.baron,
+                boss = this.Entity.boss;
+            switch (dungeonLevel) {
+                case 1:
+                    this.monsters = [new slime, new slime, new slime, new slime, new slime];
+                    break;
+                case 2:
+                    this.monsters = [new slime, new slime, new succubus, new succubus, new succubus];
+                    break;
+                case 3:
+                    this.monsters = [new cacodemon, new cacodemon, new cacodemon, new succubus, new succubus];
+                    break;
+                case 4:
+                    this.monsters = [new baron, new baron, new cacodemon, new succubus, new boss];
+                    break;
+            }
+
+            let potion = this.Item;
+            switch (dungeonLevel) {
+                case 1:
+                    this.items = [new potion, new potion, new potion, new potion, new potion];
+                    break;
+                default:
+                    this.items = [new potion, new potion, new potion, wepAndArmour[0], wepAndArmour[1]];
+            }
+
+            // Set up transporter
+            if (this.state.level.level !== 4) {
+                var rnd = Math.floor(Math.random() * rooms.length);
+                this.Item.transporter = new this.Item({});
+                this.Item.transporter.char = 'X';
+                this.Item.transporter.fg = 'purple';
+                this.Item.transporter.name = 'Transporter';
+                this.Item.transporter.type = 'transporter';
+            }
+
+            // This IIFE arrow function places monsters, items and the transporter in different rooms, ensuring they don't overlap. Preserves 'this'.
+            (() => {
+                // Get length of items & monsters array, and account for the transporter - then ensure there are no dupes with a for loop.
+                var xAndY = this.monsters.length + this.items.length + 1, // Excess of +2 for indices, so subtract only one accounting for the transporter
+                    array = [];
+                for (var i = 0; i < xAndY; i++) {
+                    let rnd = Math.floor(Math.random() * rooms.length),
+                        x = ROT.RNG.getUniformInt(rooms[rnd]['_x1'], rooms[rnd]['_x2']),
+                        y = ROT.RNG.getUniformInt(rooms[rnd]['_y1'], rooms[rnd]['_y2']);
+                    if (i === 0) {
+                        array.push(x + " " + y);
+                    } // Strings allow for identificiation & a 1d array with indexOf
+                    else if (array.indexOf(x + " " + y) !== -1) {
+                        array.splice(i, 1);
+                        i--;
+                    } else {
+                        array.push(x + " " + y);
+                    }
+                }
+                // Var array now contains unique coords. Now split to 2d array with numbers.
+                array = array.map((d) => {
+                    let split = d.split(" ");
+                    return [Number(split[0]), Number(split[1])];
+                });
+                // Now place the monsters, items and transporter
+                this.monsters = this.monsters.map((d) => {
+                    var pop = array.pop();
+                    d.x = pop[0];
+                    d.y = pop[1];
+                    return d;
+                })
+                this.items = this.items.map((d) => {
+                    var pop = array.pop();
+                    d.x = pop[0];
+                    d.y = pop[1];
+                    return d;
+                })
+                var pop = array.pop();
+                this.Item.transporter.x = pop[0];
+                this.Item.transporter.y = pop[1];
+            })();
+
+            this.mapLayout = mapLayout;
+            this.drawMap();
+        }
+        drawMap() {
+            // Clear the display and redraw the current map according to FOV
+            this.display.clear();
+            var lightPasses = (x, y) => {
+                var key = x + "," + y;
+
+                if (key in this.hash && this.hash[key] == 0) {
+						  return true;
+                }
+                return false;
+            }
+
+            var fov = new ROT.FOV.PreciseShadowcasting(lightPasses);
+
+            fov.compute(this.Entity.player.x, this.Entity.player.y, 5, (x, y, r) => {
+					
+                var bg = (this.hash[x + "," + y] ? this.Tile.wallTile.bg : this.Tile.landTile.bg);
+                this.display.draw(x, y, '', '', bg);
+
+                this.monsters.forEach((d) => {
+                    if (d.x === x && d.y === y) {
+                        this.display.draw(d.x, d.y, d.char, d.fg, d.bg);
+                    }
+                })
+                this.items.forEach((d) => {
+                    if (d.x === x && d.y === y) {
+                        this.display.draw(d.x, d.y, d.char, d.fg, d.bg);
+                    }
+                })
+                if (this.state.level.level !== 4 && this.Item.transporter.x === x && this.Item.transporter.y === y) {
+                    this.display.draw(this.Item.transporter.x, this.Item.transporter.y, this.Item.transporter.char, this.Item.transporter.fg, this.Item.transporter.bg);
+                }
+            });
+			  
+            this.display.draw(this.Entity.player.x, this.Entity.player.y, this.Entity
+                .player.char, this.Entity.player.fg, this.Entity.player.bg);
+
+            this.setState({
+                player: this.Entity.player
+            });
+        }
+        handleKey() {
+            window.addEventListener('keydown', (e) => {
+                let x = this.Entity.player.x,
+                    y = this.Entity.player.y;
+                switch (e.keyCode) {
+                    case ROT.VK_LEFT:
+                        checkMove(x - 1, y);
+                        break;
+                    case ROT.VK_RIGHT:
+                        checkMove(x + 1, y);
+                        break;
+                    case ROT.VK_UP:
+                        checkMove(x, y - 1);
+                        break;
+                    case ROT.VK_DOWN:
+                        checkMove(x, y + 1);
+                        break;
+                }
+            });
+            // Validate move, checking for walls, monsters & items. Keep track of important index.
+            var index = 0;
+            var checkMove = (x, y) => {
+                // Helper function, checks if something is at the desired tile. Tracks index of item through the index var.
+                var checkArray = (arr, x, y) => {
+                    return !arr.every((monster, i) => {
+                        if (monster.x === x && monster.y === y) {
+                            index = i;
+                            return false;
+                        }
+                        return true;
+                    });
+                };
+                if (checkArray(this.monsters, x, y)) {
+                    // Reference the monster & calculate damage dealt
+                    let focus = this.monsters[index],
+                        playerAtk = this.Entity.player.atk + (Math.floor(Math.random() *
+                            10)),
+                        playerDmg = (focus.atk + (Math.floor(Math.random() * 10))) -
+                        this.Entity.player.def;
+                    // Damage monster & player, display status
+                    playerDmg < 0 ? playerDmg = 0 : playerDmg; // Don't allow negative damage
+                    focus.hp -= playerAtk;
+                    this.Entity.player.hp -= playerDmg;
+                    if (this.Entity.player.hp <= 0) {
+                        this.Entity.player = new this.Entity({});
+                        this.display.clear();
+                        this.mapSetup();
+                        this.setState({
+                            message: "You were killed by a " + focus.name +
+                                " in the last game.",
+                            player: this.Entity.player,
+                            level: {
+                                level: 1,
+                                name: "Spooky Dungeon"
+                            }
+                        });
+                    } else if (focus.hp <= 0) {
+                        if (focus.type === "boss") {
+                            this.Entity.player = new this.Entity({});
+                            this.display.clear();
+                            this.mapSetup();
+                            swal("You killed the " + focus.name + "! You reached level " + this.Entity.player.lvl + " and had " + this.Entity.player.hp + " health left.");
+                            this.setState({
+                                message: "You killed Boss " + focus.name + "! You have won. A new game has been started.",
+                                player: this.Entity.player,
+                                level: {
+                                    level: 1,
+                                    name: "Spooky Dungeon"
+                                }
+                            });
+                        } else {
+                            let xpGranted = focus.yieldExp + (Math.floor(Math.random() * 10));
+                            this.levelUp(xpGranted);
+                            this.setState({
+                                message: "You killed a " + focus.name + " and gained " +
+                                    xpGranted + " exp",
+                                player: this.Entity.player
+                            });
+                            this.monsters.splice(index, 1);
+                            this.drawMap();
+                        }
+                    } else {
+                        this.setState({
+                            message: "Attacked " + focus.name + " for " + playerAtk +
+                                " damage, received " + playerDmg + " damage"
+                        });
+                    }
+                } else if (checkArray(this.items, x, y)) {
+                    let msg = "";
+                    // Check if the tile has a potion, weapon, piece of armour or transporter
+                    if (this.items[index].type === "potion") {
+                        if (this.Entity.player.hp + this.items[index].hp <= 100) {
+                            this.Entity.player.hp += this.items[index].hp;
+                        } else {
+                            this.Entity.player.hp = 100;
+                        }
+                        msg = "You found a potion, your hp has increased by " + this.items[index].hp;
+                        this.items.splice(index, 1);
+                    } else if (this.items[index].type === "weapon") {
+                        msg = "Found a weapon (" + this.items[index].name + ")!";
+                        this.Entity.player.wep = this.items[index].name;
+                        this.Entity.player.atk = this.items[index].atk;
+                        this.items.splice(index, 1);
+                        this.applyStats(true, false);
+                    } else if (this.items[index].type === "armour") {
+                        msg = "Found armour (" + this.items[index].name + ")!";
+                        this.Entity.player.armour = this.items[index].name;
+                        this.Entity.player.def = this.items[index].def;
+                        this.items.splice(index, 1);
+                        this.applyStats(false, true);
+                    }
+
+                    this.setState({
+                        player: this.Entity.player,
+                        message: msg
+                    });
+                    this.drawMap();
+                } else if (this.Item.transporter.x === x && this.Item.transporter.y === y) {
+                    this.changeLevel();
+                } else if (!this.mapLayout[x][y].isWall) {
+                    this.Entity.player.x = x;
+                    this.Entity.player.y = y;
+                    this.drawMap();
+                }
+            };
+        }
+        // Level up the player
+        levelUp(exp) {
+            this.Entity.player.exp += exp;
+            if (this.Entity.player.exp >= (this.Entity.player.lvl * 100)) {
+                this.Entity.player.hp < 75 ? this.Entity.player.hp += 25 : this.Entity.player.hp;
+                this.Entity.player.lvl++;
+                this.Entity.player.exp = 0;
+                this.applyStats(true, true);
+            }
+        }
+        // Apply level bonus to attack and defence on weapon/armour pickup & level up
+        applyStats(atk, def) {
+            if (atk) {
+                this.Entity.player.atk += this.Entity.player.lvl;
+            }
+            if (def) {
+                this.Entity.player.def += this.Entity.player.lvl;
+            }
+            this.setState({
+                player: this.Entity.player
+            })
+        }
+        // Handle changing maps, generate weapons and armours appropriate for each level and pass them to mapSetup
+        changeLevel() {
+            if (this.state.level.level === 1) {
+                this.setState({
+                    level: {
+                        level: 2,
+                        name: "2nd Floor"
+                    }
+                });
+                let wepNames = ["Short Katana", "Short Range Bow", "Deadly Dagger", "Iron Hammer", "Bronze Axe"],
+                    armNames = ["Leather Cuirass", "Iron Breastplate", "Steel Kneepads", "Light Plate", "Hide Garment"];
+                let wep = new this.Item.weapon({
+                    name: wepNames[Math.floor(Math.random() * wepNames.length)],
+                    atk: 12
+                });
+                let armour = new this.Item.armour({
+                    name: armNames[Math.floor(Math.random() * armNames.length)],
+                    def: 6
+                });
+                let wepAndArmour = [wep, armour];
+                this.mapSetup(2, wepAndArmour);
+            } else if (this.state.level.level === 2) {
+                this.setState({
+                    level: {
+                        level: 3,
+                        name: "3rd Floor"
+                    }
+                });
+                let wepNames = ["Kokiri Sword", "Weighted Mace", "Rapid Estoc", "Zweihander", "Blunderbuss"],
+                    armNames = ["Enchanted Robe", "Heavy Plate", "Intimidating Greaves", "Golden Gauntlets", "Cobalt Mail"];
+                let wep = new this.Item.weapon({
+                    name: wepNames[Math.floor(Math.random() * wepNames.length)],
+                    atk: 17
+                });
+                let armour = new this.Item.armour({
+                    name: armNames[Math.floor(Math.random() * armNames.length)],
+                    def: 9
+                });
+                let wepAndArmour = [wep, armour];
+                this.mapSetup(3, wepAndArmour);
+            } else if (this.state.level.level === 3) {
+                this.setState({
+                    level: {
+                        level: 4,
+                        name: "Throne Room"
+                    }
+                });
+                let wepNames = ["Sword of a Thousand Truths", "Master Sword", "Excalibur"],
+                    armNames = ["Godly Plate", "Titanium Mail", "Adamantine Armour"];
+                let wep = new this.Item.weapon({
+                    name: wepNames[Math.floor(Math.random() * wepNames.length)],
+                    atk: 25
+                });
+                let armour = new this.Item.armour({
+                    name: armNames[Math.floor(Math.random() * armNames.length)],
+                    def: 15
+                });
+                let wepAndArmour = [wep, armour];
+                this.mapSetup(4, wepAndArmour);
+            }
+
+        }
+        init() {
+            $('#board').append(this.display.getContainer());
+            this.mapSetup();
+            this.handleKey();
+        }
+        componentDidMount() {
+            this.init();
+        }
+        render() {
+            return (
+              <div id="wrapper">
+                <div id="title">Level {this.state.level.level} - {this.state.level.name} - {this.state.message}</div>
+                <div id="details">
+                  <span id="hp">HP: {this.state.player.hp}</span>
+                  <span id="xp"> - LVL: {this.state.player.lvl}</span>
+                  <span id="xp"> EXP: {this.state.player.exp}</span>
+                  <span id="atk"> - ATK: +{this.state.player.atk} {this.state.player.wep}</span>
+                  <span id="def"> - DEF: +{this.state.player.def} {this.state.player.armour}</span>
+                </div>
+                <div id="board"></div>
+              </div>  
+            )
+           }
+}
+          
+ReactDOM.render(<Board />, document.getElementById('render'));

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Twitch Viewer</title>
+    
+    
+    
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto+Slab:400'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=VT323'>
+<link rel='stylesheet prefetch' href='https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css'>
+
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    
+  </head>
+
+  <body>
+
+    <html lang="en">
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta charset="utf-8">
+      <title>Twitch Viewer</title>
+      <meta name="author" content="Designed and coded by the doer.">
+      <meta name="description" content="The project created during Free Code Camp course according to Twitch.tv specification">
+   </head>
+   <body class="container-fluid">
+      <section id="page-header-section" class="page-header" role="banner">
+        <h1>Game Watcher</h1>
+      </section>
+      
+      <nav role="navigation">
+         <!-- Nav tabs -->
+         <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a id="games-tab" href="#game-tab" aria-controls="games-tab" role="tab" data-toggle="tab">Games</a></li>
+            <li role="presentation"><a id="player-tab" href="#user-tab" aria-controls="player-tab" role="tab" data-toggle="tab">Players</a></li>
+         </ul>
+
+         <!-- Tab panels -->
+         <div class="tab-content">
+            
+            <div role="tabpanel" class="tab-pane active fade in" id="game-tab">
+               <section id="get-games" class="row">
+                  <div role="search" class="input-group input-group-lg col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                    <span class="input-group-addon glyphicon glyphicon-search" id="sizing-addon1"></span>
+                    <input id="search-game" type="text" class="form-control" placeholder="Look for a game" aria-label="Look for a game" aria-describedby="sizing-addon1" autocomplete="off">
+                  </div>
+               </section>
+
+               <!-- template section for displaying games created dinamically--> 
+               <section id="game-list">
+                  <div class="row">
+                     <div class="game template text-center col-xs-12 col-sm-6 col-sm-offset-0 col-md-4">
+                        <a href="#" class="game-item">
+                        </a>
+                     </div> <!-- col -->
+                  </div> <!-- row -->
+               </section> <!-- game-list -->
+
+               <!-- template section for displaying streams --> 
+               <section id="streams">
+                  <div id="stream-row" class="row">
+                     <div class="stream template text-center col-xs-12 col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-0" id="">
+                        <a href="" class="stream-link" target="_blank">
+                           <img src="" alt="" class="stream-image img-responsive center-block" />
+                           <span class="stream-title"></span>
+                           <span class="watching-now"></span>
+                           <span class="language"></span>
+                        </a>
+                     </div> <!-- col -->
+                  </div> <!-- row -->
+                     
+                  <div id="off-stream" class="hidden text-center">
+                     Nobody is playing <span class="game-off"></span> now.
+                     <br/>Have a look at other games, start streaming your round or start coding!
+                  </div> 
+                  
+                  <div id="games-to-top" class="row text-right hidden">
+                     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                        <a id="games-top" href="#page-header-section">
+                           back to top
+                           <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                        </a>
+                     </div> <!-- col -->
+                  </div> <!-- row -->
+                  
+               </section> <!-- streams -->
+            </div>
+            
+            <div role="tabpanel" class="tab-pane fade" id="user-tab">
+               
+               <!-- add a user by name -->
+               <section id="add-user" class="row">
+                  <div class="input-group input-group-lg col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" name="add a Twitch player to follow">
+                     <span class="input-group-addon glyphicon glyphicon-user" id="sizing-addon2"></span>
+                     <input id="search-user" type="text" class="form-control" placeholder="Twitch player" aria-label="Add a Twitch player to follow" aria-describedby="sizing-addon1" autocomplete="off" data-toggle="popover" data-trigger="manual" title="No need to double users" data-content="The user has already been added to the list. Look around." data-placement="bottom">
+                     <span class="input-group-btn">
+                        <button id="add-button" class="btn btn-default" type="button">
+                           Add
+                        </button>
+                     </span>
+                  </div>
+               </section>
+               
+               <section id="user-selection" class="row">
+                  <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-4 col-lg-offset-4">
+                     <span>Show</span>
+                     <span class="toggle">
+                        <label class="checkbox-inline">
+                          <input id="toggle" type="checkbox" checked data-toggle="toggle" data-on="all" data-off="online" data-onstyle="info" data-offstyle="success" data-style="toggle-pace">
+                        </label>
+                     </span> 
+                     <span>players</span>
+                  </div> <!-- col -->
+               </section> <!-- user selection -->
+               
+               <!-- template section for displaying users created dinamically-->      
+               <section id="user-section" class="row">
+                  <div id="users" class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-4 col-lg-offset-4 text-center">
+                     <!-- user templates -->
+                     <div class="online template" id="">
+                        <a href="" class="link" target="_blank">
+                           <span class="row">
+                              <span class="col-xs-12 col-sm-4 col-md-6">
+                                 <img src="" alt="" class="image img-responsive" />
+                              </span>
+                              <span class="col-xs-12 col-sm-8 col-md-6">
+                                 <span class="title"></span>
+                                 <span class="user"></span>
+                              </span>
+                           </span>
+                        </a>
+                     </div>
+                     <div class="offline template" id=""></div>
+                  </div> <!-- col -->
+               </section> <!-- users & row-->
+               
+               <div id="everybody-offline" class="hidden text-center">
+                  Nobody from the Twitch players you follow is streaming now.
+                  <br/>Look for new players to follow in games or check the names on <a href="httpss://www.twitch.tv/" target="_blank">Twitch</a>!
+               </div> 
+               
+               <div id="back-to-top" class="row text-right hidden">
+                  <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-4 col-lg-offset-4">
+                     <a id="arrow-top" href="#page-header-section">
+                        back to top
+                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                     </a>
+                  </div> <!-- col -->
+               </div> <!-- row -->
+               
+            </div> <!-- user tab -->
+         </div> <!-- tab content -->
+
+      </nav> <!-- tabs -->
+      
+      <footer>
+         <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-1 text-center">
+               <div class="author box">
+                 
+                    <center> Designed and coded by King of KFC Jamal</center>
+       
+               </div> <!-- author-box -->   
+            </div> <!-- col -->  
+         </div> <!-- row -->
+      </footer>
+      
+   </body>
+</html>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.js'></script>
+<script src='https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js'></script>
+
+        <script src="./js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>

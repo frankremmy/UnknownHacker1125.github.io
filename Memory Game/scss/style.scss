@@ -1,0 +1,107 @@
+@import "bourbon";
+
+@mixin min-em($width) {
+	
+	  $base: $em-base;
+	  @if not unitless($base) {
+	      $base: strip-units($base);
+	  }		
+	$new-width: $width / $base;
+	
+	@media screen and (min-width: $new-width + em ) {
+		@content;	
+	}
+}
+
+body {
+	background: #FFEAC9;
+	color: white;
+  font-family: arial;
+	
+	header {
+		height: 10vh;
+		width: 100%;
+		margin: 0 auto;
+		position: relative;
+		@include min-em(599){
+			width: 600px;
+		}
+		
+		.timer {
+			position: absolute;;
+			top: 14%;
+			left: 3%;
+			font-size: 23px;
+			background: #FFAD29;
+			width: 8vh;
+			height: 8vh;
+      line-height: 8vh;
+			border-radius: 4vh;
+			text-align: center;
+		}
+		
+	}
+}
+
+.game {
+	height: 90vh;
+	width: 100%;
+	position: relative;
+	margin: 0 auto;
+	@include min-em(599){
+		width: 600px;
+	}
+}
+
+.flip-container {
+	@include perspective(1000);
+	height: 22%;
+	margin: 1%;
+	cursor: pointer;
+}
+
+.flip-container.flip .flipper {
+	@include transform(rotateY(180deg));
+}
+
+.flip-container, .front, .back {
+	width: 23%;
+	float: left;
+	border-radius: 12px;
+}
+
+.flipper {
+	
+	@include transition(null 0.6s null);
+	@include transform-style(preserve-3d);
+	height: 100%;
+	position: relative;
+	
+	.front, .back {
+		@include backface-visibility(hidden);
+		-ms-backface-visibility: visible;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		box-shadow: #FFCCA9 0 8px 2px;
+	}
+	
+	.front {
+		@include transform(rotateY(0deg));
+		background: #FF2151;
+	}
+	
+	.back {
+		@include transform(rotateY(180deg));
+		border: 1px solid #E8E8E8;
+	}
+}
+
+@each $card in piggy-bank, shoe, plane, suitcase, robot, ring, palm-tree, mp3 {
+	##{$card} {
+		background: white url("http://res.cloudinary.com/lloydfenton/image/upload/v1460983932/" + $card + ".png") no-repeat center;
+		background-size: contain;
+	}
+}

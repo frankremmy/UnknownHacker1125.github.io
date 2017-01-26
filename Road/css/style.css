@@ -1,0 +1,472 @@
+@import url(http://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
+
+.restart{
+  position:absolute;
+  margin-top:20px;
+  font-family: 'Covered By Your Grace', cursive;
+  font-size:26px;
+  cursor:pointer;
+  z-index:9999;
+}
+
+body{
+  background:#222;
+  overflow:hidden;
+}
+
+.overlay{
+  position:absolute;
+  height:100%;
+  width:100%;
+  z-index:999;
+  display:none;
+}
+.stop{
+  display:block;
+}
+
+.sky{
+  position:absolute;
+  top:0;
+  left:0;
+  background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%);
+  width:100%;
+  height:50px;
+}
+
+#cloud {
+  positon:absolute;
+  margin-left:70px;
+  margin-top:20px;
+  width: 140px;
+}
+
+#cloud div {
+  width: 130px;
+  border-radius: 48%;
+  background-color: ghostwhite;
+  display: inline-block;
+}
+
+#cloud div:nth-child(1) {
+  height: 43px;
+}
+
+#cloud div:nth-child(2) {
+  height: 63px;
+  margin-left: -20px;
+}
+
+#cloud div:nth-child(3) {
+  height: 51px;
+  margin-left: -20px;
+}
+
+.headline, .subheadline{
+  height:80px;
+  width:120px;
+  position:absolute;
+  left:100px;
+  top:100px;
+  margin:auto;
+  font-family: 'Covered By Your Grace', cursive;
+  font-size:72px;
+  font-weight:700;
+  transition: all 0.3s ease;
+  -webkit-text-stroke: 0.4px red;
+  text-shadow: 2px 2px 15px red;
+  transform: rotate( -20deg );
+  border-bottom:2px solid darkred;
+  z-index:9;
+}
+
+.subheadline{
+  font-size:23px;
+  top:155px;
+  left:130px;
+  width:250px;
+  border-bottom:none;
+  text-shadow: none;
+  -webkit-text-stroke: initial;
+  color:white;
+  font-weight:100;
+}
+
+.road{
+  position:fixed;
+  top:-100px;right:0;bottom:0;left:0;
+  margin:auto;
+  height:140%;
+  width:20%;
+  background:black;
+ background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 10%,rgba(0,0,0,1) 25%,rgba(0,0,0,1) 100%); 
+  border-left:2px solid white;
+  border-right:2px solid white;
+  transition: all 5s ease;
+  transform: perspective( 400px ) rotatex( 55deg );
+  cursor: url(http://artplague.dk/_assets/car.png) 25 15, auto;
+}
+
+body.start .road{
+  animation: roll 70s infinite;
+  animation-delay: 1s;
+  opacity:1;
+}
+
+.roadstripes{
+  height:50px;
+  width:10px;
+  border-left:3px solid white;
+  position:absolute;
+  top:200px;
+  left:0;
+  right:0;
+  bottom:110%;
+  margin:auto;
+}
+
+.roadstripes.b{
+  left:150px;
+}
+.roadstripes.c{
+  left:-150px;
+}
+
+body.start .roadstripes{
+  transition: all ease-in;
+  animation: opac 1.3s infinite;
+}
+
+.tree{
+  position:absolute;
+  left:400px;
+  bottom:90%;
+  height:100px;
+  width:70px;
+  background-image:url(http://orig15.deviantart.net/4f7c/f/2011/110/e/d/pixel_tree_v2_by_spell1337-d3drdue.png);
+  background-size:cover;
+  transform: perspective( 100px ) rotatex( -30deg );
+}
+.treeb{
+  position:absolute;
+  left:-100px;
+  bottom:100%;
+  height:70px;
+  width:50px;
+  background-image:url(http://orig15.deviantart.net/4f7c/f/2011/110/e/d/pixel_tree_v2_by_spell1337-d3drdue.png);
+  background-size:cover;
+  transform: perspective( 100px ) rotatex( -30deg );
+}
+
+.bush{
+  position:absolute;
+  left:-50px;
+  bottom:90%;
+  height:50px;
+  width:50px;
+  background-image:url(http://www.pixeljoint.com/files/icons/bush.gif);
+  background-size:cover;
+  transform: perspective( 100px ) rotatex( -30deg );
+}
+
+.police{
+  position:absolute;
+  height:60px;
+  width:60px;
+  background-image:url(http://artplague.dk/_assets/police.png);
+  background-repeat:no-repeat;
+  background-size:contain;
+  opacity:0;
+  transition: opacity 0.2s ease;
+}
+
+.civilian{
+  position:absolute;
+  left:30px;
+  height:41px;
+  width:54px;
+  opacity:0;
+  background-image:url(http://artplague.dk/_assets/civil.png);
+  background-repeat:no-repeat;
+  background-size:cover;
+  transition: opacity 0.2s ease;
+}
+
+.wire{
+  position:absolute;
+  height:10px;
+  width:60px;
+  background-image:url(http://artplague.dk/_assets/wire.png);
+  background-repeat:no-repeat;
+  opacity:0;
+  transition: opacity 0.2s ease;
+}
+
+.wire.b{
+  left:80%;
+}
+
+.gameover{
+  width:100%;
+  height:500px;
+  position:absolute;
+  top:700px;left:0;right:0;bottom:0px;
+  margin:auto;
+  color:red;
+  font-family: 'Covered By Your Grace', cursive;
+  text-align:center;
+  line-height:10px;
+  visibility:hidden;
+  font-size:26px;
+}
+
+.show{
+  visibility:visible;
+}
+
+.gameover h1{
+  font-size:36px;
+}
+
+.gameover h2{
+  font-size:18px;
+}
+
+.civilian.b{
+  left:200px;
+}
+
+body.start .civilian{
+  animation: civiliana 17s infinite;
+  animation-delay: 10s;
+  opacity:1;
+  transition-delay:10s;
+}
+
+body.start .civilian.b{
+  animation: civilianb 14s infinite;
+  animation-delay: 20s;
+  opacity:1;
+  transition-delay:20s;
+}
+
+body.start .police.a{
+  animation: policedrivinga 9s infinite;
+  animation-delay: 3s;
+  opacity:1;
+  transition-delay: 3s;
+}
+
+body.start .police.b{
+  animation: policedrivingb 8s infinite;
+  animation-delay: 9s;
+  opacity:1;
+  transition-delay: 9s;
+}
+
+body.start .police.c{
+  animation: policedrivingb 7s infinite;
+  animation-delay: 14s;
+  opacity:1;
+  transition-delay: 14s;
+}
+
+body.start .police.d{
+  animation: policedrivingd 6s infinite;
+  animation-delay: 18s;
+  opacity:1;
+  transition-delay: 18s;
+}
+
+body.start .police.e{
+  animation: policedrivinge 5s infinite;
+  animation-delay: 22s;
+  opacity:1;
+  transition-delay: 22s;
+}
+body.start .police.f{
+  animation: policedrivingf 4s infinite;
+  animation-delay: 25s;
+  opacity:1;
+  transition-delay: 25s;
+}
+body.start .police.g{
+  animation: policedrivingg 3s infinite;
+  animation-delay: 28s;
+  opacity:1;
+  transition-delay: 28s;
+}
+body.start .police.h{
+  animation: policedrivingh 4s infinite;
+  animation-delay: 32s;
+  opacity:1;
+  transition-delay: 32s;
+}
+body.start .police.i{
+  animation: policedrivingi 2.5s infinite;
+  animation-delay: 40s;
+  opacity:1;
+  transition-delay: 40s;
+}
+body.start .police.j{
+  animation: policedrivingj 2.5s infinite;
+  animation-delay: 43;
+  opacity:1;
+  transition-delay: 43s;
+}
+
+body.start .wire{
+  animation: wire 8s infinite;
+  animation-delay: 36s;
+  opacity:1;
+  transition-delay:36s;
+}
+
+body.start .wire.b{
+  animation: wire 7s infinite;
+  animation-delay: 39s;
+  opacity:1;
+  transition-delay:39s;
+}
+
+body.start .tree{
+  animation: treeani 5s infinite;
+}
+
+body.start .treeb{
+  animation: treeanib 9s infinite;
+}
+
+body.start .bush{
+  animation: bush 7s infinite;
+}
+
+
+@keyframes opac {
+  0% {bottom:110%;}
+  100% {bottom:-100%;}
+}
+
+@keyframes treeani {
+  0% {bottom:90%;}
+  100% {bottom:-100%;
+    transform: perspective( 100px ) rotatex( -150deg );
+  }
+}
+@keyframes treeanib {
+  0% {bottom:100%;}
+  100% {bottom:-100%;
+    transform: perspective( 100px ) rotatex( -150deg );
+  }
+}
+@keyframes bush {
+  0% {bottom:90%;}
+  100% {bottom:-100%;
+    transform: perspective( 100px ) rotatex( -150deg );
+  }
+}
+@keyframes wire {
+  0% {bottom:90%;}
+  100% {bottom:-100%;
+  }
+}
+
+@keyframes civiliana {
+  0% {bottom:90%;}
+  100% {bottom:-100%;
+  }
+}
+
+@keyframes civilianb {
+  0% {bottom:90%;}
+  100% {bottom:-100%;
+  }
+}
+/*POLICE*/
+@keyframes policedrivinga {
+  0% {bottom:90%;left:0;right:0;}
+  20%{left:80%;}
+  40%{left:70%;}
+  100% {bottom:-100%;}
+}
+
+@keyframes policedrivingb {
+  0% {bottom:90%;left:150px;right:0;}
+  20%{left:10%;}
+  40%{left:30%px;}
+  100% {bottom:-100%;}
+}
+
+@keyframes policedrivingc {
+  0% {bottom:90%;left:90%;right:0;}
+  20%{left:90%;}
+  30%{left:50%}
+  40%{left:10%;}
+  100% {bottom:-100%;}
+}
+
+@keyframes policedrivingd {
+  0% {bottom:90%;left:0px;right:0;}
+  20%{left:30%;}
+  30%{left:0%}
+  40%{left:60%px;}
+  50%{left:80%;}
+  100% {bottom:-100%;}
+}
+
+@keyframes policedrivinge {
+  0% {bottom:90%;left:0px;right:0;}
+  20%{left:80%;}
+  30%{left:40%}
+  40%{left:80%;}
+  50%{left:40%;}
+  60%{left:90%;}
+  100% {bottom:-100%;}
+}
+@keyframes policedrivingf {
+  0% {bottom:90%;left:0px;right:0;}
+  20%{left:20%;}
+  30%{left:10%}
+  40%{left:60%;}
+  50%{left:80%;}
+  60%{left:30%;}
+  100% {bottom:-100%;}
+}
+@keyframes policedrivingg {
+  0% {bottom:90%;left:10%;right:0;}
+  20%{left:20%;}
+  30%{left:30%}
+  40%{left:40%;}
+  50%{left:50%;}
+  50%{left:60%;}
+  100% {bottom:-100%;}
+}
+@keyframes policedrivingh {
+  0% {bottom:90%;left:10%;right:0;}
+  20%{left:90%;}
+  30%{left:10%}
+  40%{left:90%;}
+  50%{left:10%;}
+  50%{left:90%;}
+  100% {bottom:-100%;}
+}
+@keyframes policedrivingi {
+  0% {bottom:90%;left:90%;right:0;}
+  10%{left:90%;}
+  15%{left:10%;}
+  20%{left:20%;}
+  25%{left:30%;}
+  30%{left:40%}
+  100% {bottom:-100%;}
+}
+
+@keyframes roll{
+  0%{transform:perspective( 400px ) rotatex( 55deg ) skewy(0deg)}
+  10%{transform:perspective( 400px ) rotatex( 55deg ) skewy(15deg)}
+  20%{transform:perspective( 400px ) rotatex( 55deg ) skewy(0deg)}
+  30%{transform:perspective( 400px ) rotatex( 55deg ) skewx(0deg)}
+  40%{transform: perspective( 400px ) rotatex( 55deg ) skewx(10deg)}
+  50%{transform: perspective( 400px ) rotatex( 55deg ) skewx(0deg)}
+  70%{  transform: perspective( 400px ) rotatex( 63deg );}
+  100%{  transform: perspective( 400px ) rotatex( 55deg );}
+}

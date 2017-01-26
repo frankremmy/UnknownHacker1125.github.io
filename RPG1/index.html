@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Edgars Lair | a pure CSS RPG</title>
+    
+    
+    
+    
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    
+  </head>
+
+  <body>
+
+    
+<input type="checkbox" id="ch_play"/>
+<input type="checkbox" id="ch_bed"/>
+<input type="checkbox" id="ch_stove"/>
+<input type="checkbox" id="ch_sink"/>
+<input type="checkbox" id="ch_table"/>
+<input type="checkbox" id="ch_fireplace"/>
+<input type="radio" id="ra_1" name="ra" checked="checked"/>
+<input type="radio" id="ra_2" name="ra"/>
+<input type="radio" id="ra_3" name="ra"/>
+<input type="radio" id="ra_4" name="ra"/>
+<button accesskey="w" class="control up"></button>
+<button accesskey="a" class="control left"></button>
+<button accesskey="s" class="control down"></button>
+<button accesskey="d" class="control right"></button>
+<label for="ch_play" class="info">i</label>
+<div data-room="bedroom" class="room bedroom">
+  <label for="ra_1" class="door horizontal"></label>
+  <div class="carpet"></div>
+  <div class="carpet _2"></div>
+  <div class="carpet _3"></div>
+  <div class="carpet _4"></div>
+  <div class="deko2"></div>
+  <div class="deko2 _2"></div>
+  <div class="plant"></div>
+  <div class="plant _2"></div>
+  <label for="ch_bed" class="bed"> </label>
+</div>
+<div data-room="livingroom" class="room livingroom">
+  <label for="ra_2" class="door horizontal"></label>
+  <label for="ra_3" class="door vertical"></label>
+  <div class="carpet"></div>
+  <div class="plant"></div>
+  <div class="plant _2"></div>
+  <div class="basket"></div>
+  <label for="ch_fireplace" class="fireplace"></label>
+  <div class="deko1"></div>
+  <div class="deko2"></div>
+  <div data-speak="Hi Edgar, how are you doing?" tabindex="0" class="girl"></div>
+</div>
+<div data-room="kitchen" class="room kitchen">
+  <label for="ra_4" class="door vertical"></label>
+  <label for="ch_stove" class="stove">  </label>
+  <label for="ch_sink" class="sink"></label>
+  <label for="ch_table" class="table">
+    <div class="plant"></div>
+  </label>
+</div>
+<div data-fireplace="The fire is nice and warm" data-sink="I don't want to do the dishes now" data-stove="I'm not hungy right now" data-table="This is a table" data-bed="Zzzzzzzzzz" class="character"></div>
+<div class="explain">
+  <h1 class="title">Edgars Lair<span>a pure CSS RPG by <a href="https://twitter.com/GregorAdams" target="blank">@GregorAdams</a></span></h1>
+  <div class="modal">
+    <div class="key">ctrl</div> +
+    <div class="key">alt</div> + 
+    <div class="key">W</div> or
+    <div class="key">A</div> or
+    <div class="key">S</div> or
+    <div class="key">D</div> then
+    <div class="key">space</div>  or click buttons to walk<br/> Click on wall-gaps to change the room.<br/> Click on objects to interact.<br/>
+    <label for="ch_play" class="button">play</label>
+  </div>
+  <audio controls="controls" loop="loop" autoplay="autoplay">
+    <source src="https://pixelass.com/rpg_sound_3.mp3"/>
+    <source src="https://pixelass.com/rpg_sound_3.ogg"/>
+  </audio>
+</div>
+    
+    
+    
+    
+    
+  </body>
+</html>
