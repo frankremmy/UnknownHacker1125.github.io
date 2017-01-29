@@ -12,7 +12,7 @@ function addUserBox (name, init) {
 }
 
 function getUser (name) {
-   $.getJSON("https://api.twitch.tv/kraken/streams/" + name + "?callback=?", function (result) {
+   $.getJSON("https://api.twitch.tv/kraken/channels/" + name + "?callback=?", function (result) {
       // when the account does not exist or the account is closed
       if (result.hasOwnProperty("error")) {
          var clonedOffline = $(".offline.template").clone();
@@ -142,7 +142,7 @@ function addUsersToLocalStorage (name) {
 
 function getFreeCodeCamp (name) {
    var name = "freecodecamp";
-   $.getJSON("https://api.twitch.tv/kraken/streams/" + name + "?callback=?", function (result) {
+   $.getJSON("https://api.twitch.tv/kraken/channels/" + name + "?callback=?", function (result) {
       // when the account does not exist or the account is closed
       if (result.hasOwnProperty("error")) {
          fccFooter(false);
@@ -221,7 +221,7 @@ $(document).ready(function () {
       minLength: 3,
       // getting the list of suggestions for a query a user provides
       source: function(query, process) {
-         $.getJSON("https://api.twitch.tv/kraken/search/games?q=" + query + "&type=suggest&live=true", function (result){
+         $.getJSON("https://api.twitch.tv/kraken/search/streams?" + query + "&type=suggest&live=true", function (result){
             // preparing game names to feed typeahead
             var gameNames = [];
             for (var i=0; i<result.games.length; i++) {
