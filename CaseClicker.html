@@ -26,13 +26,27 @@
       <div class="settingsList hidden">
         <li><h1>SETTINGS</h1></li>
         <li>Disable Popup: <input type="checkbox" id="popupCheckbox"></li>
-		<audio id="player_btn_0_0" class="Player" src="sounds/start-game.mp3" preload="none" controls="controls" onloadeddata="setHalfVolume()" type="audio/mp3"></audio>				<b><font size="56" style="color:white;">Lost</font></b><br>
-	<audio id="player_btn_0_1" class="Player" src="sounds/new-item.mp3" preload="none" controls="controls" onloadeddata="setHalfVolume()" type="audio/mp3"></audio><b><font size="56" style="color:white;">Bot Threw In</font></b><br>
-	<audio id="player_btn_0_2" class="Player" src="sounds/win-pot.mp3" preload="none" controls="controls" onloadeddata="setHalfVolume()" type="audio/mp3"></audio><b><font size="56" style="color:white;">You won</font></b><br>
-	<audio id="player_btn_0_3" class="Player" src="sounds/click.wav" preload="none" controls="controls" onloadeddata="setHalfVolume()" type="audio/wav"></audio><b><font size="56" style="color:white;">Clicking Accept</font></b><br>
-	<audio id="player_btn_0_4" class="Player" src="sounds/menuclick.wav" preload="none" controls="controls" onloadeddata="setHalfVolume()" type="audio/wav"></audio><b><font size="56" style="color:white;">Menu Click</font></b><br>
-	<audio id="player_btn_0_5" class="Player" src="sounds/itemreveal.mp3" preload="none" controls="controls" onloadeddata="setHalfVolume()" type="audio/mp3"></audio><b><font size="56" style="color:white;">Unbox Case</font></b><br>
-        <div class="clearGameState">Clear Game Save</div>
+			<div class="audio">
+				<div class="sg">
+					&nbsp;&nbsp;<audio id="startgame" src="sounds/start-game.mp3" type="audio/mp3"></audio><input type="image" src="https://i.imgur.com/DerV5hu.png" onclick="audiosg();"/><input type="image" src="https://i.imgur.com/jHVbUvE.png" onclick="audiosgup();"  value="Volume Max"/><input type="image" src="https://i.imgur.com/SwyIqRg.png" onclick="audiosgdown();"  value="Volume Lowered"/><input type="image" src="https://i.imgur.com/tViMF8c.png" onclick="audiosgmute();"  value="Volume Mute"/><b><font size="56" style="color:white;">You lost</font></b><br>
+				</div>
+				<div class="be">
+					&nbsp;&nbsp;<audio id="botentered" src="sounds/new-item.mp3" type="audio/mp3"></audio><input type="image" src="https://i.imgur.com/DerV5hu.png" onclick="audiobe();"/><input type="image" src="https://i.imgur.com/jHVbUvE.png" onclick="audiobeup();"  value="Volume Max"/><input type="image" src="https://i.imgur.com/SwyIqRg.png" onclick="audiobedown();"  value="Volume Lowered"/><input type="image" src="https://i.imgur.com/tViMF8c.png" onclick="audiobemute();"  value="Volume Mute"/><b><font size="56" style="color:white;">Bot joins</font></b><br>
+				</div>
+				<div class="won">
+					&nbsp;&nbsp;<audio id="youwon" src="sounds/win-pot.mp3" type="audio/mp3"></audio><input type="image" src="https://i.imgur.com/DerV5hu.png" onclick="audiowon();"/><input type="image" src="https://i.imgur.com/jHVbUvE.png" onclick="audiowonup();"  value="Volume Max"/><input type="image" src="https://i.imgur.com/SwyIqRg.png" onclick="audiowondown();"  value="Volume Lowered"/><input type="image" src="https://i.imgur.com/tViMF8c.png" onclick="audiowonmute();"  value="Volume Mute"/><b><font size="56" style="color:white;">You won</font></b><br>
+				</div>
+				<div class="a">
+					&nbsp;&nbsp;<audio id="accepted" src="sounds/click.wav" type="audio/wav"></audio><input type="image" src="https://i.imgur.com/DerV5hu.png" onclick="audioa();"/><input type="image" src="https://i.imgur.com/jHVbUvE.png" onclick="audioaup();"  value="Volume Max"/><input type="image" src="https://i.imgur.com/SwyIqRg.png" onclick="audioadown();"  value="Volume Lowered"/><input type="image" src="https://i.imgur.com/tViMF8c.png" onclick="audioamute();"  value="Volume Mute"/><b><font size="56" style="color:white;">Accepted</font></b><br>
+				</div>
+				<div class="mc">
+					&nbsp;&nbsp;<audio id="menu" src="sounds/menuclick.wav" type="audio/wav"></audio><input type="image" src="https://i.imgur.com/DerV5hu.png" onclick="audiomc();"/><input type="image" src="https://i.imgur.com/jHVbUvE.png" onclick="audiomcup();"  value="Volume Max"/><input type="image" src="https://i.imgur.com/SwyIqRg.png" onclick="audiomcdown();"  value="Volume Lowered"/><input type="image" src="https://i.imgur.com/tViMF8c.png" onclick="audiomcmute();"  value="Volume Mute"/><b><font size="56" style="color:white;">Menu</font></b><br>
+				</div>
+				<div class="ub">
+					&nbsp;&nbsp;<audio id="unbox" src="sounds/itemreveal.mp3" type="audio/mp3"></audio><input type="image" src="https://i.imgur.com/DerV5hu.png" onclick="audioub();"/><input type="image" src="https://i.imgur.com/jHVbUvE.png" onclick="audioubup();"  value="Volume Max"/><input type="image" src="https://i.imgur.com/SwyIqRg.png" onclick="audioubdown();"  value="Volume Lowered"/><input type="image" src="https://i.imgur.com/tViMF8c.png" onclick="audioubmute();"  value="Volume Mute"/><b><font size="56" style="color:white;">Unbox</font></b><br>
+				</div>
+			</div>
+		<div class="clearGameState">Clear Game Save</div>
       </div>
       <div class="aboutContainer">
         <div class="aboutInfo">

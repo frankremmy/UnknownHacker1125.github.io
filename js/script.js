@@ -15378,7 +15378,7 @@ $(".inventoryItemContainer").on("click", ".inventoryItem", function() {
     $(".tooltipAnchor").hide();
     var item = eval(atob(inventory[this.id]));
     //console.log(item);
-$('#player_btn_0_4')[0].play();
+$('#menu')[0].play();
     inventoryCurrent -= 1;
     money += (item['price']);
     //console.log(item['price']);
@@ -15395,7 +15395,7 @@ $("#case").click(function() {
     var price = (operationCases[currentCase]["price"] - caseDiscount) + (keyPrice - keyDiscount);
     if (price >= 0 && money >= price) {
       money -= price;
-	$('#player_btn_0_5')[0].play();
+	$('#unbox')[0].play();
       randSkin();
     } else if (price < 0 && money >= price) {
       randSkin();
@@ -15408,7 +15408,7 @@ $(".jackpotDifficulty").click(function() {
   if (!jackpotInProgress) {
     $(".jackpotDifficultyContainer div").removeClass("active");
     $(this).addClass("active");
-	$('#player_btn_0_4')[0].play();
+	$('#menu')[0].play();
     jackpotDifficulty = this.id;
 
   }
@@ -15416,17 +15416,17 @@ $(".jackpotDifficulty").click(function() {
 
 $(".modalMain").on("click", ".modalClose", function() {
   $('.modalWindow').toggle();
-  $('#player_btn_0_4')[0].play();
+  $('#menu')[0].play();
 });
 
 $("#acceptButton").click(function() {
   money += acceptMoneyPerClick;
-$('#player_btn_0_3')[0].play();  
+$('#accepted')[0].play();  
 });
 
 $(".about").click(function() {
   $(".main").toggleClass("small");
-  $('#player_btn_0_4')[0].play();
+  $('#menu')[0].play();
 });
 
 /*===============TABS===============*/
@@ -15443,7 +15443,7 @@ $("#caseTab").click(function() {
     $(".inventoryContainer").hide();
     $(".caseContainer").show();
     $(".coinContainer").hide();
-	$('#player_btn_0_4')[0].play();
+	$('#menu')[0].play();
     $(".rightMain").css("bottom","135px");
     $(".tradeButtonContainer").show();
     if ($(".unboxing").css('display') !== 'block') {
@@ -15465,7 +15465,7 @@ $("#inventoryTab").click(function() {
     $(".inventoryContainer").show();
     $(".caseContainer").hide();
     $(".coinContainer").hide();
-	$('#player_btn_0_4')[0].play();
+	$('#menu')[0].play();
     $(".rightMain").css("bottom","135px");
     $(".tradeButtonContainer").show();
     if ($(".unboxing").css('display') !== 'block') {
@@ -15487,7 +15487,7 @@ $("#upgradeTab").click(function() {
     $(".inventoryContainer").hide();
     $(".caseContainer").hide();
     $(".coinContainer").hide();
-	$('#player_btn_0_4')[0].play();
+	$('#menu')[0].play();
     $(".rightMain").css("bottom","135px");
     $(".tradeButtonContainer").show();
     if ($(".unboxing").css('display') !== 'block') {
@@ -15511,7 +15511,7 @@ $("#jackpotTab").click(function() {
       $(".inventoryContainer").hide();
       $(".caseContainer").hide();
       $(".coinContainer").hide();
-	  $('#player_btn_0_4')[0].play();
+	  $('#menu')[0].play();
       $(".tradeButtonContainer").hide();
       $(".rightMain").css("bottom","0");
       if ($(".unboxing").css('display') == 'block') {
@@ -15534,7 +15534,7 @@ $("#coinTab").click(function() {
     $(".coinContainer").show();
     $(".caseContainer").hide();
     $(".inventoryContainer").hide();
-	$('#player_btn_0_4')[0].play();
+	$('#menu')[0].play();
     $(".rightMain").css("bottom","135px");
     $(".tradeButtonContainer").hide();
     if ($(".unboxing").css('display') !== 'block') {
@@ -15546,7 +15546,7 @@ $("#coinTab").click(function() {
 
 $('.settings').click(function() {
   $('.settingsList').toggleClass("hidden");
-  $('#player_btn_0_4')[0].play();
+  $('#menu')[0].play();
 });
 
 $('#popupCheckbox').change(function() {
@@ -15604,7 +15604,7 @@ function upgradeMultiplier(basePrice, amount) {
 $(".stackingUpgradeContainer").on("click", ".upgrade", function() {
   var name = stackingUpgrades[this.id]["name"];
   var desc = stackingUpgrades[this.id]["desc"];
-  $('#player_btn_0_4')[0].play();
+  $('#menu')[0].play();
 
   if (money >= stackingUpgrades[this.id]["price"]) {
     money -= stackingUpgrades[this.id]["price"];
@@ -15700,7 +15700,7 @@ $(".jackpotRightPlayer").on("click", ".inventorySwapItem", function() {
         jackpotInventory[this.id] = inventory[this.id];
         drawSwappedItem(item.name, item.price, item.img, this.id);
         swapSkins += 1;
-		$('#player_btn_0_4')[0].play();
+		$('#menu')[0].play();
         swapSkinsValue += item.price;
         updateSwapInfo();
         //delete inventory[this.id];
@@ -16075,7 +16075,7 @@ function jackpotStart() {
           var botSelector = "deposit" + depositTicker;
 
           $('#' + botSelector).append('<div class="depositorSkin ' + rarity + '" title="' + name + '"><div class="itemPrice">' + price + '</div> <img src=' + img + '> </div>');
-		  $('#player_btn_0_1')[0].play();
+		  $('#botentered')[0].play();
           //console.log(randomBot);
       }
 
@@ -16115,7 +16115,7 @@ function jackpotStart() {
       $(".winnerIs").html("You Win!");
       $("#playerDepositor").addClass("winner");
       console.log("You Win!");
-	  $('#player_btn_0_2')[0].play();
+	  $('#youwon')[0].play();
       inventoryCurrent += Object.keys(pot).length;
       $.extend(inventory, pot);
       skinOverflow();
@@ -16131,7 +16131,7 @@ function jackpotStart() {
           $(".winnerIs").html("Winner is: " + jackpotAI[players[i]][0] + " with " + (botTicketsOwned / totalTickets * 100).toFixed(2) + "%");
           $("#jackpotDepositor" + players[i]).addClass("winner");
           console.log(players[i]);
-		  $('#player_btn_0_0')[0].play();
+		  $('#startgame')[0].play();
           itemCounter -= jackpotItemCounter;
           break;
         } else {
@@ -16287,17 +16287,139 @@ function clearGameState() {
 }
 
 /*===============CANVAS===============*/
-function setHalfVolume() {
-    var myAudio = document.getElementById("player_btn_0_3");  
-    myAudio.volume = 0.5; //Changed this to 0.5 or 50% volume since the function is called Set Half Volume ;)
+
+/*===============Music===============*/
+
+/*===============Start Game===============*/
+function audiosg(){
+    var audio = document.getElementById("startgame");  
+    audio.play(); 
 }
 
-var audio = document.getElementById('player_btn_0_0');
-var audio = document.getElementById('player_btn_0_1');
-var audio = document.getElementById('player_btn_0_2');
-var audio = document.getElementById('player_btn_0_3');
-var audio = document.getElementById('player_btn_0_4');
-var audio = document.getElementById('player_btn_0_5');
+function audiosgup(){
+    var audio = document.getElementById("startgame");  
+    audio.volume = 1.0; 
+}
+
+function audiosgdown(){
+    var audio = document.getElementById("startgame");  
+    audio.volume = 0.2; 
+}
+
+function audiosgmute(){
+    var audio = document.getElementById("startgame");  
+    audio.volume = 0.0; 
+}
+/*===============Bot Entered===============*/
+function audiobe(){
+    var audio = document.getElementById("botentered");  
+    audio.play(); 
+}
+
+function audiobeup(){
+    var audio = document.getElementById("botentered");  
+    audio.volume = 1.0; 
+}
+
+function audiobedown(){
+    var audio = document.getElementById("botentered");  
+    audio.volume = 0.2; 
+}
+
+function audiobemute(){
+    var audio = document.getElementById("botentered");  
+    audio.volume = 0.0; 
+}
+/*===============You Won===============*/
+function audiowon(){
+    var audio = document.getElementById("youwon");  
+    audio.play(); 
+}
+
+function audiowonup(){
+    var audio = document.getElementById("youwon");  
+    audio.volume = 1.0; 
+}
+
+function audiowondown(){
+    var audio = document.getElementById("youwon");  
+    audio.volume = 0.2; 
+}
+
+function audiowonmute(){
+    var audio = document.getElementById("youwon");  
+    audio.volume = 0.0; 
+}
+/*===============Accept===============*/
+function audioa(){
+    var audio = document.getElementById("accepted");  
+    audio.play(); 
+}
+
+function audioaup(){
+    var audio = document.getElementById("accepted");  
+    audio.volume = 1.0; 
+}
+
+function audioadown(){
+    var audio = document.getElementById("accepted");  
+    audio.volume = 0.2; 
+}
+
+function audioamute(){
+    var audio = document.getElementById("accepted");  
+    audio.volume = 0.0; 
+}
+/*===============Menu Click===============*/
+function audiomc(){
+    var audio = document.getElementById("menu");  
+    audio.play(); 
+}
+
+function audiomcup(){
+    var audio = document.getElementById("menu");  
+    audio.volume = 1.0; 
+}
+
+function audiomcdown(){
+    var audio = document.getElementById("menu");  
+    audio.volume = 0.2; 
+}
+
+function audiomcmute(){
+    var audio = document.getElementById("menu");  
+    audio.volume = 0.0; 
+}
+/*===============Unbox===============*/
+function audioub(){
+    var audio = document.getElementById("unbox");  
+    audio.play(); 
+}
+
+function audioubup(){
+    var audio = document.getElementById("unbox");  
+    audio.volume = 1.0; 
+}
+
+function audioubdown(){
+    var audio = document.getElementById("unbox");  
+    audio.volume = 0.2; 
+}
+
+function audioubmute(){
+    var audio = document.getElementById("unbox");  
+    audio.volume = 0.0; 
+}
+
+
+
+
+var audio = document.getElementById('startgame');
+var audio = document.getElementById('botentered');
+var audio = document.getElementById('youwon');
+var audio = document.getElementById('accepted');
+var audio = document.getElementById('menu');
+var audio = document.getElementById('unbox');
 
 audio.addEventListener('volume', function() {
     console.log('changed.', arguments);

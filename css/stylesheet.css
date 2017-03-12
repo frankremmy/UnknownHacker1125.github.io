@@ -126,7 +126,7 @@ html, body {
 .aboutDev {
 	width: 350px;
 	float: left;
-}
+} 
 
 .aboutDevName {
 	display: block;
@@ -1192,6 +1192,32 @@ div.knife {
 	background-color: #1A2929;
 }
 
+.sg {
+    width:450px;
+    height:20px;
+}
+
+.be {
+    width:450px;
+    height:20px;
+}
+.won {
+    width:450px;
+    height:20px;
+}
+.a {
+    width:450px;
+    height:20px;
+}
+.mc {
+    width:450px;
+    height:20px;
+}
+.ub {
+    width:450px;
+    height:20px;
+}
+
 .settingsList {
 	color: #fff;
 	position: absolute;
@@ -1203,6 +1229,11 @@ div.knife {
 	z-index: 1;
 	transition: .5s;
 }
+
+.Player{
+	color: #186144 !important;
+}
+
 
 .settingsList li {
 	list-style: none;
