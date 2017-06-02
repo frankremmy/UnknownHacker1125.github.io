@@ -1,0 +1,11 @@
+body {
+    background-image: url("http://i.imgur.com/PA8uzZj.jpg");
+}
+#results {
+   text-align: center;
+   border: 3px solid green;
+   width: 300px;
+   font-size: 40px;
+   margin: auto;
+   color: white;
+}
