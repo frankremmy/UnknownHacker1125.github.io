@@ -15438,7 +15438,7 @@ var cases = {
 			weap1: {
         name: "Souvenir Desert Eagle | Hand Cannon FN",
         price: 248.83,
-        img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposr-kLAtl7PLZTjVD4ti1lY6FmPnLP7LWnn9u5MRjjeyP8Nrw0AO3rhFuYGr0dYKXcVI8Y12EqVC5xu3rh8fqv8mfzXJlsyUq4GGdwUIWZtGMPw/360fx360f"
+        img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposr-kLAtl7PLZTjVD4ti1lY6FmPnLP7LWnn9u5MRjjeyP8Nrw0AO3rhFuYGr0dYKXcVI8Y12EqVC5xu3rh8fqv8mfzXJlsyUq4GGdwUIWZtGMPw"
     },
 			weap2: {
         name: "Souvenir Desert Eagle | Hand Cannon MW",
@@ -15898,7 +15898,7 @@ function inventoryValue() {
 
 /*===============UPGRADES===============*/
 function upgradeMultiplier(basePrice, amount) {
-  var newPrice = basePrice * Math.pow(1.05, amount + 1).toFixed(2);
+  var newPrice = basePrice * Math.pow(2.00, amount + 1).toFixed(2);
   console.log(newPrice);
   return newPrice;
 }
