@@ -15179,11 +15179,12 @@ var cases = {
 
         price: 62.05,
         img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0Ob3djFN79eJg4GYg_L4MrXVqXlU6sB9teXI8oTht1i1uRQ5fWv7II6ce1dsYl2F_wC8yL3p0MLuupmbyyM1uykmtiqInhzmgU0YZuxxxavJ__KWVeE"
+        img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0Ob3djFN79eJg4GYg_L4MrXVqXlU6sB9teXI8oTht1i1uRQ5fWv7II6ce1dsYl2F_wC8yL3p0MLuupmbyyM1uykmtiqInhzmgU0YZuxxxavJ__KWVeE"
       }
 	}
-  }
+  },
 // ESL One Cologne 2014 Cobblestone Souvenir Package
-case21: {
+ case21: {
 		milspec: {
 			weap1: {
         name: "Souvenir Dual Berettas | Briar FN",
@@ -15498,10 +15499,7 @@ var totalKnivesOpened = 0;
 
 /*===============LOGIC===============*/
 
-function beatboy() {
-  money = 5000;
-  inventoryMax = 200;
-}
+function beatboy(){money+=5000;inventoryMax+=200};
 
 //cases -> case# -> rarity  -> weaponname, price, img
 //cases -> case1 -> milspec -> weap1.name
