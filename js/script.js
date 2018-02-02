@@ -1444,7 +1444,35 @@ var knives = {
 	knife4: {name: "✯ Bayonet | Lore MW", price: 685.00, img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLu8JAllx8zLZAJA7cW5moWfqPv7Ib7ummJW4NFOhujT8om72wPmqEQ5YzygIoORJAVsNF2E_1Lryem818Tt756Ym3NlunMqtnjbygv3309GNM5LHA"},
 	knife5: {name: "✯ Bayonet | Lore FN", price: 888.75, img: "http://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLu8JAllx8zLZAJA7cW5moWfqPv7Ib7ummJW4NFOhujT8om72wPmqEQ5YzygIoORJAVsNF2E_1Lryem818Tt756Ym3NlunMqtnjbygv3309GNM5LHA"}
   },
-}
+  falchion: {
+	knife1: {
+				name: "Souvenir AWP | Dragon Lore FN",
+				price: 2885.91,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTQgXtu5Mx2gv3--Y3nj1H6qBFvMWHyIo7Adw9raF6GrlK9lLi-jJO7tJ_JzyNh63F3sX_emUPkgQYMMLL2MDRAbQ"
+			},
+			knife2: {
+				name: "Souvenir AWP | Dragon Lore MW",
+				price: 1710.63,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTQgXtu5Mx2gv3--Y3nj1H6qBFvMWHyIo7Adw9raF6GrlK9lLi-jJO7tJ_JzyNh63F3sX_emUPkgQYMMLL2MDRAbQ"
+			},
+			knife3: {
+				name: "Souvenir AWP | Dragon Lore FT",
+				price: 1127.97,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTQgXtu5cB1g_zMyoD0mlOx5UM5ZWClcYCUdgU3Z1rQ_FK-xezngZO46MzOziQ1vSMmtCmIyxfkgx5SLrs4SgJFJKs/360fx360f"
+			},
+			knife4: {
+				name: "Souvenir AWP | Dragon Lore WW",
+				price: 1033.35,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTQgXtu5cB1g_zMyoD0mlOx5UM5ZWClcYCUdgU3Z1rQ_FK-xezngZO46MzOziQ1vSMmtCmIyxfkgx5SLrs4SgJFJKs"
+			},
+			knife5: {
+				name: "Souvenir AWP | Dragon Lore BS",
+				price: 754.47,
+				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTQgXtu4MBwnPD--Y3nj1H68hE-NW_2JNPAdVNtYV_Q_wO6le7u1pS-7pWfzCFnvCEq7SyOnBzi0wYMMLK7E03aCQ"
+			}
+		}
+  };
+
 
 // cases
 var cases = {
@@ -15179,7 +15207,6 @@ var cases = {
 
         price: 62.05,
         img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0Ob3djFN79eJg4GYg_L4MrXVqXlU6sB9teXI8oTht1i1uRQ5fWv7II6ce1dsYl2F_wC8yL3p0MLuupmbyyM1uykmtiqInhzmgU0YZuxxxavJ__KWVeE"
-        img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgposbaqKAxf0Ob3djFN79eJg4GYg_L4MrXVqXlU6sB9teXI8oTht1i1uRQ5fWv7II6ce1dsYl2F_wC8yL3p0MLuupmbyyM1uykmtiqInhzmgU0YZuxxxavJ__KWVeE"
       }
 	}
   },
@@ -15455,33 +15482,6 @@ var cases = {
 				price: 365.01,
 				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhz2v_Nfz5H_uO3mb-GkuP1P6jummJW4NFOhujT8om72VGy-kJpZjr0JYSWdg9sYwmBrwS2wOnt1JXo7Zqfm3M2vCJ35HzbnQv330-9f4-Ixw"
 			}
-		},
-		covert: {
-			weap1: {
-				name: "Souvenir AWP | Dragon Lore FN",
-				price: 2885.91,
-				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTQgXtu5Mx2gv3--Y3nj1H6qBFvMWHyIo7Adw9raF6GrlK9lLi-jJO7tJ_JzyNh63F3sX_emUPkgQYMMLL2MDRAbQ"
-			},
-			weap2: {
-				name: "Souvenir AWP | Dragon Lore MW",
-				price: 1710.63,
-				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTQgXtu5Mx2gv3--Y3nj1H6qBFvMWHyIo7Adw9raF6GrlK9lLi-jJO7tJ_JzyNh63F3sX_emUPkgQYMMLL2MDRAbQ"
-			},
-			weap3: {
-				name: "Souvenir AWP | Dragon Lore FT",
-				price: 1127.97,
-				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTQgXtu5cB1g_zMyoD0mlOx5UM5ZWClcYCUdgU3Z1rQ_FK-xezngZO46MzOziQ1vSMmtCmIyxfkgx5SLrs4SgJFJKs/360fx360f"
-			},
-			weap4: {
-				name: "Souvenir AWP | Dragon Lore WW",
-				price: 1033.35,
-				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTQgXtu5cB1g_zMyoD0mlOx5UM5ZWClcYCUdgU3Z1rQ_FK-xezngZO46MzOziQ1vSMmtCmIyxfkgx5SLrs4SgJFJKs"
-			},
-			weap5: {
-				name: "Souvenir AWP | Dragon Lore BS",
-				price: 754.47,
-				img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTQgXtu4MBwnPD--Y3nj1H68hE-NW_2JNPAdVNtYV_Q_wO6le7u1pS-7pWfzCFnvCEq7SyOnBzi0wYMMLK7E03aCQ"
-			}
 		}
 	}
 };
@@ -15572,6 +15572,8 @@ function randSkin() {
            knifeCase = "bowiest";
 		 } else if (currentCase === "case20") {
            knifeCase = "gamma";
+		 } else if (currentCase === "case21") {
+           knifeCase = "dragonlore";
          } else {
            knifeCase = "regular";
          }
@@ -15656,7 +15658,7 @@ function drawInventory() {
 
   for (var i = 0; i < keys.length; i++) {
     var rarity = atob(inventory[keys[i]]).replace(/\[[^\[]*$/g, "").match(/\[[^\[]*$/g).toString().match(/\b\w*\b/)[0];
-    if (rarity === "regular" || rarity === "butterst" || rarity === "falchionst" || rarity === "chromast" || rarity === "chroma" || rarity === "huntsman" || rarity === "gamma" || rarity === "huntst" || rarity === "butterfly" || rarity === "shadow" || rarity === "shadowst" || rarity === "bowie" || rarity === "bowiest" || rarity === "falchion") {
+    if (rarity === "regular" || rarity === "butterst" || rarity === "falchionst" || rarity === "chromast" || rarity === "chroma" || rarity === "huntsman" || rarity === "gamma" || rarity === "huntst" || rarity === "butterfly" || rarity === "shadow" || rarity === "shadowst" || rarity === "bowie" || rarity === "bowiest" || rarity === "falchion"|| rarity === "dragonlore") {
       rarity = "knife";
     }
     var item = eval(atob(inventory[keys[i]]));
@@ -16039,7 +16041,7 @@ $(".jackpotRightStartButton").click(function() {
 function drawJackpotSwapItem(name, price, img, id) {
       var keys = Object.keys(inventory);
       var rarity = atob(inventory[id]).replace(/\[[^\[]*$/g, "").match(/\[[^\[]*$/g).toString().match(/\b\w*\b/)[0];
-      if (rarity === "regular" || rarity === "falchionst" || rarity === "butterst" || rarity === "chromast" || rarity === "chroma" || rarity === "huntsman" || rarity === "gamma" || rarity === "huntst" || rarity === "butterfly" || rarity === "bowie" || rarity === "bowiest" || rarity === "shadow" || rarity === "shadowst" || rarity === "falchion") {
+      if (rarity === "regular" || rarity === "falchionst" || rarity === "butterst" || rarity === "chromast" || rarity === "chroma" || rarity === "huntsman" || rarity === "gamma" || rarity === "huntst" || rarity === "butterfly" || rarity === "bowie" || rarity === "bowiest" || rarity === "shadow" || rarity === "shadowst" || rarity === "falchion"|| rarity === "dragonlore") {
         rarity = "knife";
       }
 
@@ -16053,7 +16055,7 @@ function drawJackpotSwapItem(name, price, img, id) {
 function drawSwappedItem(name, price, img, id) {
       var keys = Object.keys(inventory);
       var rarity = atob(inventory[id]).replace(/\[[^\[]*$/g, "").match(/\[[^\[]*$/g).toString().match(/\b\w*\b/)[0];
-      if (rarity === "regular" || rarity === "falchionst" || rarity === "bowie" || rarity === "bowiest" || rarity === "butterst" || rarity === "chromast" || rarity === "gamma" || rarity === "chroma" || rarity === "huntsman" || rarity === "huntst" || rarity === "butterfly" || rarity === "shadow" || rarity === "shadowst" || rarity === "falchion") {
+      if (rarity === "regular" || rarity === "falchionst" || rarity === "bowie" || rarity === "bowiest" || rarity === "butterst" || rarity === "chromast" || rarity === "gamma" || rarity === "chroma" || rarity === "huntsman" || rarity === "huntst" || rarity === "butterfly" || rarity === "shadow" || rarity === "shadowst" || rarity === "falchion"|| rarity === "dragonlore") {
         rarity = "knife";
       }
 
@@ -16076,7 +16078,7 @@ function drawSwapInventory() {
 
   for (var i = 0; i < keys.length; i++) {
     var rarity = atob(inventory[keys[i]]).replace(/\[[^\[]*$/g, "").match(/\[[^\[]*$/g).toString().match(/\b\w*\b/)[0];
-    if (rarity === "regular" || rarity === "bowie" || rarity === "bowiest" || rarity === "falchionst" || rarity === "butterst" || rarity === "chromast" || rarity === "chroma" || rarity === "gamma" || rarity === "huntsman" || rarity === "huntst" || rarity === "butterfly" || rarity === "shadow" || rarity === "shadowst" || rarity === "falchion") {
+    if (rarity === "regular" || rarity === "bowie" || rarity === "bowiest" || rarity === "falchionst" || rarity === "butterst" || rarity === "chromast" || rarity === "chroma" || rarity === "gamma" || rarity === "huntsman" || rarity === "huntst" || rarity === "butterfly" || rarity === "shadow" || rarity === "shadowst" || rarity === "falchion"|| rarity === "dragonlore") {
       rarity = "knife";
     }
     var item = eval(atob(inventory[keys[i]]));
@@ -16245,7 +16247,7 @@ function jackpotStart() {
 
     for (var i = 0; i < keys.length; i++) {
       var rarity = atob(pot[keys[i]]).replace(/\[[^\[]*$/g, "").match(/\[[^\[]*$/g).toString().match(/\b\w*\b/)[0];
-      if (rarity === "regular" || rarity === "bowie" || rarity === "bowiest" || rarity === "falchionst" || rarity === "butterst" || rarity === "chromast" || rarity === "chroma" || rarity === "gamma" || rarity === "huntsman" || rarity === "huntst" || rarity === "butterfly" || rarity === "shadow" || rarity === "shadowst" || rarity === "falchion") {
+      if (rarity === "regular" || rarity === "bowie" || rarity === "bowiest" || rarity === "falchionst" || rarity === "butterst" || rarity === "chromast" || rarity === "chroma" || rarity === "gamma" || rarity === "huntsman" || rarity === "huntst" || rarity === "butterfly" || rarity === "shadow" || rarity === "shadowst" || rarity === "falchion"|| rarity === "dragonlore") {
         rarity = "knife";
       }
       var item = eval(atob(pot[keys[i]]));
@@ -16470,7 +16472,7 @@ function jackpotStart() {
     var keys = Object.keys(pot);
     for (var i = 0; i < keys.length; i++) {
       var rarity = atob(pot[keys[i]]).replace(/\[[^\[]*$/g, "").match(/\[[^\[]*$/g).toString().match(/\b\w*\b/)[0];
-      if (rarity === "regular" || rarity === "bowie" || rarity === "bowiest" || rarity === "falchionst" || rarity === "butterst" || rarity === "chromast" || rarity === "chroma" || rarity === "gamma" || rarity === "huntsman" || rarity === "huntst" || rarity === "butterfly" || rarity === "shadow" || rarity === "shadowst" || rarity === "falchion") {
+      if (rarity === "regular" || rarity === "bowie" || rarity === "bowiest" || rarity === "falchionst" || rarity === "butterst" || rarity === "chromast" || rarity === "chroma" || rarity === "gamma" || rarity === "huntsman" || rarity === "huntst" || rarity === "butterfly" || rarity === "shadow" || rarity === "shadowst" || rarity === "falchion"|| rarity === "dragonlore") {
         rarity = "knife";
       }
       var item = eval(atob(pot[keys[i]]));
