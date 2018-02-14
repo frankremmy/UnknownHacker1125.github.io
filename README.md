@@ -1,3 +1,2 @@
 # UnknownHacker1125.github.io
-if you would like to copy please add a link to this site 
-thanks
+preview the site at unknownhacker1125.github.io
