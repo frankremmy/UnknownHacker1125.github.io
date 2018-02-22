@@ -4,10 +4,10 @@ require_once("./include/fg_membersite.php");
 $fgmembersite = new FGMembersite();
 
 //Provide your site name here
-$fgmembersite->SetWebsiteName('user11.com');
+$fgmembersite->SetWebsiteName('unknownhacker1125.github.io');
 
 //Provide the email address where you want to get notifications
-$fgmembersite->SetAdminEmail('user11@user11.com');
+$fgmembersite->SetAdminEmail('unknownhacker1125@gmail.com');
 
 //Provide your database login details here:
 //hostname, user name, password, database name and table name
@@ -21,6 +21,6 @@ $fgmembersite->InitDB(/*hostname*/'localhost',
 
 //For better security. Get a random string from this link: http://tinyurl.com/randstr
 // and put it here
-$fgmembersite->SetRandomKey('qSRcVS6DrTzrPvr');
+$fgmembersite->SetRandomKey('Lxad56IKwf0zQnZ');
 
 ?>
