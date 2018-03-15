@@ -230,5 +230,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
 </div>
+	<style>
+		    BackToTop: function(){
+      
+      $("#back-top").hide();
+
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('#back-top').fadeIn();
+        } else {
+            $('#back-top').fadeOut();
+        }
+      });
+    },
+		</style>
 </body>
 </html>
