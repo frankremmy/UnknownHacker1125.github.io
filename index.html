@@ -28,6 +28,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   UPLOADCARE_PUBLIC_KEY = "cc92047f9ef26b22eeff";
 </script>
 <script charset="utf-8" src="//ucarecdn.com/libs/widget/3.2.3/uploadcare.full.min.js"></script>
+<script language="JavaScript">
+cookie_name = "Basic_Cookie";
+function write_cookie() {
+if(document.cookie) {
+index = document.cookie.indexOf(cookie_name);
+} else {
+index = -1;
+}
+if (index == -1) {
+document.cookie=cookie_name+"=1; expires=Wednesday, 01-Aug-2040 08:00:00 GMT";
+} else {
+countbegin = (document.cookie.indexOf("=", index) + 1);
+countend = document.cookie.indexOf(";", index);
+if (countend == -1) {
+countend = document.cookie.length;
+}
+count = eval(document.cookie.substring(countbegin, countend)) + 1;
+document.cookie=cookie_name+"="+count+"; expires=Wednesday, 01-Aug-2040 08:00:00 GMT";
+}
+}
+</script>
 	<title>UnknownHacker1125 · Official Website</title>
 
 	<link rel="apple-touch-icon" sizes="128x128" href="/images/UnknownHacker1125.png">
