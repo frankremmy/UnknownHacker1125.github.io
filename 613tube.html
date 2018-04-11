@@ -1,0 +1,118 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>613 Tube | Filtered YouTube</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+            $("#morebtn").click(function() {
+                $("#more").slideToggle();
+            });
+			
+			    $("#theform").submit(function (e) {
+		if($("#max").val()==6){$("#max").attr('name', '');}
+		if($("#sort").val()=="relevance"){$("#sort").attr('name', '');}
+        return true; // ensure form still submits
+    });
+	
+		//setTimeout(function() {$(".topblob").addClass("opacity0")},3000);
+
+			
+        });
+		
+    </script>
+<style>
+.smalinx{
+font-family:Arial,Sans-Serif;font-size:small;text-decoration:none;color:grey;
+}
+.smalinx:hover{text-decoration:underline}
+</style>
+</head>
+
+<body>
+        <br />
+    <div align="center">
+<!--    <div class="topblob"></div> -->
+        <div id="logo"></div>
+        <div id="main">
+            <form action="results/" method="get" id="theform">
+                <div class="flexsearch">
+                    <div class="flexsearch--wrapper">
+                        <div class="flexsearch--form">
+                            <div class="flexsearch--input-wrapper">
+                                <input class="flexsearch--input" type="search" name="q" id="q" placeholder="Search YouTube Safely" value="">
+                            </div>
+                            <input class="flexsearch--submit" type="submit" value="&#128269;" />
+                        </div>
+                    </div>
+                </div>
+                    <select name="sort" id="sort">
+                        <option value="relevance"  selected="selected">Relevance</option>
+                        <option value="rating" >Ratings</option>
+                        <option value="viewCount" >Views</option>
+                        <option value="date" >Newest</option>
+                    </select>
+                    <div style="display:inline-block;">
+                        <select name="max" id="max">
+                            <option value="1" >1 Result</option>
+                            <option value="6"  selected="selected">6 Results</option>
+                            <option value="12" >12 Results</option>
+                            <option value="24" >24 Results</option>
+                            <option value="50" >50 Results</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submitbtn">Search</button>
+            </form>
+            <span id="brag">No&nbsp;Ads &#8226;&nbsp;No&nbsp;Related (and&nbsp;Unrelated) Video&nbsp;Suggestions &#8226;&nbsp;Clean&nbsp;Homepage &#8226;&nbsp;Community-Contributed Filtering</span>
+
+            <div id="about-box">
+                <div id="morebtn">What is 613 Tube?</div>
+                <div id="more" style="display:none; padding:0px 22px 22px 22px;">
+                    <p class="titletxt">Watching YouTube videos on 613Tube</p>
+                    <p class="article">Watch any YouTube video on 613Tube and you'll get to see the video you want, without any advertisements inside and around the video area. No related video suggestions or comments there to drift you away. Just get the video you want, nothing else.</p>
+                    <p class="article">From now on, anytime someone sends you a YouTube link, just replace &quot;<strong>you</strong>tube.com&quot; with &quot;<strong>613</strong>tube.com&quot;, and you will see the <strong>same</strong> video, <strong>just in a cleaner atmosphere</strong>.</p>
+                    <p class="article"><strong>Example:</strong> <a href="https://www.613tube.com/watch/?v=LXQcrsS1PzM">https://www.<strong>613</strong>tube.com/watch/?v=LXQcrsS1PzM</a>
+                    </p>
+                    <p class="article">Also, before sending a YouTube link to a friend, be kind enough to correct the link so that he too will get to fully enjoy the video in the clean atmosphere.</p>
+                    
+                    <p class="titletxt">613Tube Video Search</p>
+                    <p class="article">Now you can search YouTube through 613Tube. 613Tube uses the regular YouTube search engine, with YouTube's <strong>SafeSearch</strong> feature automatically enabled and our very own Community-Based Filtering system.</p>
+                    
+                     <p class="titletxt">Community-Based Filtering</p>
+                    <p class="article">613Tube users (like you) are constantly improving our advanced video filtering system. Whenever an inappropriate search result shows up, just click the "Red Flag" at the corner of your screen to remove a video from future searches.</p>
+                    
+                    <p class="titletxt">613Tube Browser Extensions</p>
+                    <p class="article">To make life even easier, you can install the <strong>613Tube Extension</strong> for your browser. Once installed, all YouTube links will <strong>automatically</strong> be redirected to 613Tube. You will then be able to confidently click on any YouTube link without needing to manually replace &quot;<strong>you</strong>tube&quot; with &quot;<strong>613</strong>tube&quot;.</p>
+                    <p class="article">Additionally, with the extension installed, even YouTube videos which are embedded into <strong>other</strong> websites will be modified to not display any video suggestions when the video finishes playing.</p>
+                    <p class="article">This is a brand new project and your feedback will be greatly appreciated: <strong><a href="mailto:info@613tube.com">info@613tube.com</a></strong>
+                    </p>
+                </div>
+            </div>
+<div style="display:block">
+<!--<a href='https://play.google.com/store/apps/details?id=com.zeeroapps.tube_app&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+<img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="230"/>
+</a>-->
+</div>
+            <div style="display:inline-block">
+                <a href="chrome/"><img src="chrome.png" width="200" height="74" alt="" />
+                </a>
+            </div>
+            <div style="display:inline-block">
+                <a href="firefox/"><img src="firefox.png" width="200" height="74" alt="" />
+                </a>
+            </div>
+                                <br><a class="smalinx" href="privacy/">Privacy Policy</a> | <a class="smalinx" href="mailto:info@613tube.com">Feedback: info@613tube.com</a>
+        </div>
+    </div>
+    <!--<div style="position:fixed; bottom:0; left:0;" onclick="alert('Browser InfoMozilla/5.0 (X11; CrOS aarch64 10323.67.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.209 Safari/537.36')">?</div>--!-->
+    <script>
+	function rel(){if(document.getElementById('q').value!=''){document.getElementById('theform').submit();}}
+	</script>
+</body>
+</html>
