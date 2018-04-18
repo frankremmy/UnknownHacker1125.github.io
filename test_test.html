@@ -307,6 +307,17 @@
     }
 
 });
-<script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+// var algoliasearch = require('algoliasearch');
+// var algoliasearch = require('algoliasearch/reactnative');
+// var algoliasearch = require('algoliasearch/lite');
+// import * as algoliasearch from 'algoliasearch'; // When using TypeScript
+
+// or just use algoliasearch if you are using a <script> tag
+// if you are using AMD module loader, algoliasearch will not be defined in window,
+// but in the AMD modules of the page
+<script>
+var client = algoliasearch('JWIM4MRHGG', '3c4aaf3ba793e0662822bb077f3da1ab');
+var index = client.initIndex('your_index_name');
+</script>
 </body>
 </html>
