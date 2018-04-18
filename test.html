@@ -6,7 +6,6 @@
 	<meta name="theme-color" content="#1793D1">
 	<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="5e0081a6-fd4f-4acb-8e8e-528cc3ef5496";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.7.2/dist/instantsearch-theme-algolia.min.css">
 	<title>UnknownHacker1125 · Official Test Website</title>
 
 	<link rel="apple-touch-icon" sizes="128x128" href="https://i.imgur.com/p0FX659.jpg">
@@ -309,57 +308,6 @@
 
 });
 </script>
-<div id="current-refined-values">
-  <!-- CurrentRefinedValues widget will appear here -->
-</div>
 
-<div id="clear-all">
-  <!-- ClearAll widget will appear here -->
-</div>
-
-[ ... ]
-
-<div id="pagination">
-  <!-- Pagination widget will appear here -->
-</div>
-
-<script>
-  const search = instantsearch(options);
-
-  // initialize currentRefinedValues
-  search.addWidget(
-    instantsearch.widgets.currentRefinedValues({
-      container: '#current-refined-values',
-      // This widget can also contain a clear all link to remove all filters,
-      // we disable it in this example since we use `clearAll` widget on its own.
-      clearAll: false
-    })
-  );
-
-  // initialize clearAll
-  search.addWidget(
-    instantsearch.widgets.clearAll({
-      container: '#clear-all',
-      templates: {
-        link: 'Reset everything'
-      },
-      autoHideContainer: false
-    })
-  );
-
-  // initialize pagination
-  search.addWidget(
-    instantsearch.widgets.pagination({
-      container: '#pagination',
-      maxPages: 20,
-      // default is to scroll to 'body', here we disable this behavior
-      scrollTo: false
-    })
-  );
-
-  [...]
-
-  search.start();
-</script>
 </body>
 </html>
